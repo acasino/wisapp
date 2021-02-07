@@ -9,6 +9,7 @@ gem 'thin'
 gem 'shotgun'
 gem 'bcrypt'
 gem 'dotenv'
+gem 'sinatra-flash'
 
 group :development do
   gem 'pry'
