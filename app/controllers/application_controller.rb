@@ -14,4 +14,17 @@ class ApplicationController < Sinatra::Base
     erb :welcome
   end
 
+  # get ['/signin', '/access'] do
+  #   redirect '/login'
+  # end
+
+  # error Sinatra::NotFound do
+  #   erb :"error.html"
+  # end
+
+  
+
+
+
+
 end
