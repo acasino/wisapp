@@ -5,6 +5,7 @@ class Offer < ActiveRecord::Base
     validates :status, presence: true, inclusion: {in: ["Pending", "Complete", "Accepted", "Rejected"], message: "Must be one of: Pending, Complete, Accepted, Rejected."}
     validates :sender, presence: true
     validates :receiver, presence: true
+    validates :wanted_id, presence: true
     validate :future_timestamp?
 
     def future_timestamp?
