@@ -5,6 +5,9 @@ if ActiveRecord::Base.connection.migration_context.needs_migration?
 end
 
 run ApplicationController
+use WatchesController
+use UsersController
+use OffersController
 use GenresController
 use BrandsController
 use BrandControllersController
