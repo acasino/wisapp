@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_07_010837) do
+ActiveRecord::Schema.define(version: 2021_02_07_023040) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -27,19 +27,19 @@ ActiveRecord::Schema.define(version: 2021_02_07_010837) do
   end
 
   create_table "offers", force: :cascade do |t|
-    t.integer "sender_id_id"
-    t.integer "receiver_id_id"
+    t.integer "sender_id"
+    t.integer "receiver_id"
     t.float "sender_offer_price"
     t.datetime "timestamp"
     t.string "transaction_id"
     t.string "status"
-    t.integer "wanted_id_id"
+    t.integer "wanted_id"
     t.boolean "accepted"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["receiver_id_id"], name: "index_offers_on_receiver_id_id"
-    t.index ["sender_id_id"], name: "index_offers_on_sender_id_id"
-    t.index ["wanted_id_id"], name: "index_offers_on_wanted_id_id"
+    t.index ["receiver_id"], name: "index_offers_on_receiver_id"
+    t.index ["sender_id"], name: "index_offers_on_sender_id"
+    t.index ["wanted_id"], name: "index_offers_on_wanted_id"
   end
 
   create_table "users", force: :cascade do |t|
