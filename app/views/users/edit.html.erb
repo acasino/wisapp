@@ -1,19 +1,11 @@
 <h1>Edit Profile</h1>
 
-<h2>Profile:
-<div>
-    <%= @user.profile %>
-</div>
-</h2>
+<form method="post" action="/users/<%=@user.id%>">
+  <input id="hidden" type="hidden" name="_method" value="patch" />
 
-<h2>Watches: 
-    <div>
-        <%= @user.watches.first.name %>
-    </div>
-</h2>
+  <label for="name">Profile:</label>
+  <input type="text" id="profile" name="profile" value="<%=@user.profile%>" />
+  <br/>
+  <input type="submit" value="Submit Changes" />
 
-<h2>Add a new watch:</h2>
-
-<h2>Collection total value: </h2>
-
-<h3>Logout</h3>
+</form>

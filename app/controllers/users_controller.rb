@@ -35,7 +35,7 @@ class UsersController < ApplicationController
       if @user
         erb :"/users/profile.html"
       else
-        redirect /not_found
+        redirect '/not_found'
       end
     end
   end
@@ -46,11 +46,15 @@ class UsersController < ApplicationController
       @user = User.find_by_id(params[:id])
       erb :"/users/edit.html"
     else
-      redirect /not_found
+      redirect '/not_found'
+    end
   end
 
-  # PATCH: /users/5
+  # # PATCH: /users/5
   patch "/users/:id" do
+    @user = User.find_by_id(params[:id])
+    @user.profile = params[:profile]
+    @user.save 
     redirect "/users/:id"
   end
 
