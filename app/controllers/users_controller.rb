@@ -18,10 +18,43 @@ class UsersController < ApplicationController
     end
   end
 
-  # # GET: /users/5
+  # # GET: /users
   get '/users/profile.html' do
-    erb :"/users/profile.html"
+    if logged_in?
+      @user = current_user
+      erb :"/users/profile.html"
+    else
+      redirect '/login'
+    end
   end
+
+    # # GET: /users/5
+  get "/users/:id" do
+    if logged_in? #valid_credentials?
+      @user = User.find_by_id(params[:id])
+      if @user
+        erb :"/users/profile.html"
+      else
+        redirect /not_found
+      end
+    end
+  end
+
+  # # GET: /users/5/edit
+  get "/users/:id/edit" do
+    if logged_in? && !!current_user
+      @user = User.find_by_id(params[:id])
+      erb :"/users/edit.html"
+    else
+      redirect /not_found
+  end
+
+  # PATCH: /users/5
+  patch "/users/:id" do
+    redirect "/users/:id"
+  end
+
+
 
 
 
