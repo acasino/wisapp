@@ -7,12 +7,11 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/signup" do
-    binding.pry
     user = User.create(params["user"])
     if user.valid?
       flash[:success] = "Successfully created new user."
       session["user_id"] = user.id
-      redirect '/users/show' ###sluggable###
+      redirect '/login' ###sluggable###
     else
       flash[:error] = user.errors.full_messages.first
       redirect '/signup'

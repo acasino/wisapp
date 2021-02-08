@@ -24,7 +24,7 @@ class ApplicationController < Sinatra::Base
     if user && user.authenticate(params["user"]["password"])
       session["user_id"] = user.id
       flash[:success] = "Successfully logged in."
-      redirect "/users/users" #sluggable
+      erb :'users/index.html' #sluggable
     else 
       flash[:error] = "Invalid credentials."
       redirect "/login"
