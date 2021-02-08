@@ -50,13 +50,14 @@ class ApplicationController < Sinatra::Base
       def find_by_username_or_email
         User.find_by(:username => params[:username]) || User.find_by(:email => params[:email])
       end
-  #   def current_user
-  #     @current_user ||= User.find(session[:user_id]) if session[:user_id]
-  #   end
 
-  #   def logged_in?
-  #     !!current_user
-  #   end
+      def current_user
+        @current_user ||= User.find(session[:user_id]) if session[:user_id]
+      end
+
+      def logged_in?
+        !!current_user
+      end
 
   #   def redirect_if_not_logged_in
   #     if !logged_in?

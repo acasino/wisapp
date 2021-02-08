@@ -18,13 +18,9 @@ class UsersController < ApplicationController
     end
   end
 
-  get '/users/:username' do
-    @user = find_by_username_or_email
-    if @user
-      erb :'users/profile.html'
-    else
-      erb :not_found
-    end
+  # # GET: /users/5
+  get '/users/profile.html' do
+    erb :"/users/profile.html"
   end
 
 
