@@ -56,6 +56,7 @@ class UsersController < ApplicationController
     @user.profile = params[:profile]
     @user.save 
     redirect "/users/:id"
+    # redirect "/users/profile.html"
   end
 
 

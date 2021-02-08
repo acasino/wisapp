@@ -37,6 +37,10 @@ class ApplicationController < Sinatra::Base
     redirect "/"
   end
 
+  get '/not_found' do
+    erb :not_found
+  end
+
   # get ['/signin', '/access'] do
   #   redirect '/login'
   # end
@@ -56,7 +60,8 @@ class ApplicationController < Sinatra::Base
       end
 
       def logged_in?
-        !!current_user
+        # !!current_user
+        !!session[:user_id]
       end
 
   #   def redirect_if_not_logged_in
