@@ -7,6 +7,7 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/signup" do
+    binding.pry
     user = User.create(params["user"])
     if user.valid?
       flash[:success] = "Successfully created new user."
