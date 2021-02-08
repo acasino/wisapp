@@ -11,7 +11,12 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    erb :welcome
+    redirect '/login'
+  end
+
+  get '/login' do
+    #redirect_if_logged_in
+    erb :index
   end
 
   # get ['/signin', '/access'] do
@@ -43,7 +48,7 @@ class ApplicationController < Sinatra::Base
   #       redirect "/login" #update**
   #     end
   #   end
-  end
+  # end
 
 
 end
