@@ -6,14 +6,22 @@
 </div>
 </h2>
 
-<h2>Watches: 
+<!-- <h2>Watches: 
     <div>
         <%= @user.watches.first.name %>
     </div>
-</h2>
+</h2> -->
+
+<ul>
+    <% @user.watches.each do |watch| %>
+      <li><%= watch.name %> </a></li>
+    <% end %>
+  </ul>
+
 
 <h2>Add a new watch:</h2>
 
 <h2>Collection total value: </h2>
+
 
 <h3>Logout</h3>

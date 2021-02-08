@@ -55,8 +55,8 @@ class UsersController < ApplicationController
     @user = User.find_by_id(params[:id])
     @user.profile = params[:profile]
     @user.save 
-    redirect "/users/:id"
-    # redirect "/users/profile.html"
+    # redirect '/users/:id' #Goes to "NOT FOUND" from /:id for some reason
+    redirect "/users/profile.html" #cannot update profile
   end
 
 
@@ -98,3 +98,5 @@ class UsersController < ApplicationController
   #   redirect "/users"
   # end
 end
+
+
