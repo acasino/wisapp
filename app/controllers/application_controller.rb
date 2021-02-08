@@ -19,6 +19,23 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
 
+  post "/login" do
+    user = User.find_by_email(params["user"]["email"])
+    if user && user.authenticate(params["user"]["password"])
+      session["user_id"] = user.id
+      flash[:success] = "Successfully logged in."
+      redirect "/users/users" #sluggable
+    else 
+      flash[:error] = "Invalid credentials."
+      redirect "/login"
+    end
+  end
+
+  get "/logout" do
+    session.clear 
+    redirect "/"
+  end
+
   # get ['/signin', '/access'] do
   #   redirect '/login'
   # end
