@@ -20,11 +20,12 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    user = User.find_by_email(params["user"]["email"])
-    if user && user.authenticate(params["user"]["password"])
-      session["user_id"] = user.id
+    @user = User.find_by_email(params["user"]["email"])
+    if @user && @user.authenticate(params["user"]["password"])
+      session["user_id"] = @user.id
       flash[:success] = "Successfully logged in."
-      erb :'users/index.html' #sluggable
+      # erb :'users/index.html' #sluggable
+      redirect 'users/profile.html'
     else 
       flash[:error] = "Invalid credentials."
       redirect "/login"
@@ -44,7 +45,11 @@ class ApplicationController < Sinatra::Base
   #   erb :"error.html"
   # end
 
-  # helpers do
+   helpers do
+
+      def find_by_username_or_email
+        User.find_by(:username => params[:username]) || User.find_by(:email => params[:email])
+      end
   #   def current_user
   #     @current_user ||= User.find(session[:user_id]) if session[:user_id]
   #   end
@@ -65,7 +70,7 @@ class ApplicationController < Sinatra::Base
   #       redirect "/login" #update**
   #     end
   #   end
-  # end
+   end
 
 
 end

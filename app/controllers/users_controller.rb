@@ -7,14 +7,23 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/signup" do
-    user = User.create(params["user"])
+    @user = User.create(params["user"])
     if user.valid?
       flash[:success] = "Successfully created new user."
-      session["user_id"] = user.id
+      session["user_id"] = @user.id
       redirect '/login' ###sluggable###
     else
-      flash[:error] = user.errors.full_messages.first
+      flash[:error] = @user.errors.full_messages.first
       redirect '/signup'
+    end
+  end
+
+  get '/users/:username' do
+    @user = find_by_username_or_email
+    if @user
+      erb :'users/profile.html'
+    else
+      erb :not_found
     end
   end
 
