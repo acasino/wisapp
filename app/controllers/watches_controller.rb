@@ -2,6 +2,7 @@ class WatchesController < ApplicationController
 
   # GET: /watches
   get "/watches" do
+    @watches = Watch.all
     erb :"/watches/index.html"
   end
 

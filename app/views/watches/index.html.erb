@@ -1,1 +1,6 @@
-<h1>This is the Model's index page.</h1>
+<h1>This is the index page for all watches.</h1>
+<ul>
+    <% @watches.all.each do |watch| %>
+      <li><%= watch.name %> </a></li>
+    <% end %>
+</ul>
