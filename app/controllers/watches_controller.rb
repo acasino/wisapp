@@ -41,11 +41,16 @@ class WatchesController < ApplicationController
 
   # GET: /watches/5/edit
   get "/watches/:id/edit" do
+    @watch = Watch.find_by_id(params[:id])
     erb :"/watches/edit.html"
   end
 
   # PATCH: /watches/5
   patch "/watches/:id" do
+    @watch = Watch.find_by_id(params[:id])
+    @watch.description = params[:description]
+    @watch.price = params[:price]
+    @watch.save 
     redirect "/watches/:id"
   end
 
