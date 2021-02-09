@@ -60,6 +60,12 @@ class UsersController < ApplicationController
   end
 
 
+  # #DELETE:
+  delete '/logout' do
+    session.destroy
+    redirect to '/login'
+  end
+
 
 
 
