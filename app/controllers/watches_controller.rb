@@ -6,7 +6,7 @@ class WatchesController < ApplicationController
   end
 
   # GET: /watches/new
-  get "/watches/new" do
+  get "/watches/new.html" do
     erb :"/watches/new.html"
   end
 
@@ -15,7 +15,7 @@ class WatchesController < ApplicationController
     redirect "/watches"
   end
 
-  # GET: /watches/5
+  # # GET: /watches/5
   get "/watches/:id" do
     erb :"/watches/show.html"
   end

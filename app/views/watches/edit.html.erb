@@ -1,1 +1,34 @@
-<h1>Insert the form to edit an instance of your model here.</h1>
+<h1>Edit your watch</h1>
+
+<div class="container">
+    <form method="post" action="/watches/<%=@watch.id%>">
+        <input id="hidden" type="hidden" name="_method" value="patch" />
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" name="watch[name]" id="name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="dimensions">Dimensions:</label>
+            <input type="dimensions" name="watch[dimensions]" id="dimensions" class="form-control" required><br>
+        </div>
+        <div class="form-group">
+            <label for="description">Description:</label>
+            <input type="description" name="watch[description]" id="description" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="price">Price:</label>
+            <input type="price" name="watch[price]" id="price" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="genre">Genre:</label>
+            <input type="genre" name="watch[genre]" id="genre" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="brand">Brand:</label>
+            <input type="brand" name="watch[brand]" id="brand" class="form-control" required>
+        </div>        
+
+        <input type="submit" value="Edit Watch">
+    </form>
+
+</div>
