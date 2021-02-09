@@ -8,5 +8,5 @@ class Watch < ActiveRecord::Base
     validates :price, numericality: {greater_than_or_equal_to: 0}
     validates :brand, presence: true
     validates :genre, presence: true
-    validates :owner, presence: true
+    # validates :owner, presence: true
 end

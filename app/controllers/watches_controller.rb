@@ -13,23 +13,26 @@ class WatchesController < ApplicationController
 
   # POST: /watches
   post "/watches" do
-    @watch = Watch.create(params["watch"].reject{|_, v| v.blank?})    
-    # unless params[:watch][:name].empty?
-    if watch.valid?
-      flash[:success] = "Successfully created new watch."
-      redirect '/watches' ###sluggable###
-    else
-      flash[:error] = @watch.errors.full_messages.first
-      redirect '/watches'
-    end
-    # @watch = Watch.new
-    # @watch.name = params['watch']['name']
-    # @watch.dimensions = params['watch']['dimensions']
-    # @watch.description = params['watch']['description']
-    # @watch.price = params['watch']['price']
-    # @watch.save
-    # redirect '/watches' 
-
+    # @watch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})    
+    # # unless params[:watch][:name].empty?
+    # if watch.valid?
+    #   flash[:success] = "Successfully created new watch."
+    #   redirect '/users/profile.html' 
+    # else
+    #   flash[:error] = @watch.errors.full_messages.first
+    #   redirect '/watches'
+    # end
+    @user = current_user
+    @watch = Watch.new
+    @watch.name = params['watch']['name']
+    @watch.dimensions = params['watch']['dimensions']
+    @watch.description = params['watch']['description']
+    @watch.price = params['watch']['price']
+    @watch.brand = params['watch']['brand']
+    @watch.genre = params['watch']['genre']
+    @watch.owner_id = current_user.id
+    @watch.save
+    erb :"/users/profile.html"
 
   end
 
