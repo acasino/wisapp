@@ -13,7 +13,16 @@ class WatchesController < ApplicationController
 
   # POST: /watches
   post "/watches" do
-    redirect "/watches"
+    @watch = Watch.create(params["user"])
+    if watch.valid?
+      flash[:success] = "Successfully created new watch."
+      session["user_id"] = @user.id
+      redirect '/watches' ###sluggable###
+    else
+      flash[:error] = @user.errors.full_messages.first
+      redirect '/watches'
+    end
+
   end
 
   # # GET: /watches/5
