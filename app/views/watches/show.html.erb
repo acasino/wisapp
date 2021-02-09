@@ -1,4 +1,8 @@
 <h1><%= @watch.name %></h1>
 <p>
-
+<% @watch.attributes.each do |attr_name, attr_value| %>
+  <div class="watch>
+    <%= attr_name %>: <%= attr_value %>
+  </div>
+<% end %>
 </p>
