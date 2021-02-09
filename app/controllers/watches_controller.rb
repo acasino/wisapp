@@ -13,20 +13,29 @@ class WatchesController < ApplicationController
 
   # POST: /watches
   post "/watches" do
-    @watch = Watch.create(params["user"])
+    @watch = Watch.create(params["watch"].reject{|_, v| v.blank?})    
+    # unless params[:watch][:name].empty?
     if watch.valid?
       flash[:success] = "Successfully created new watch."
-      session["user_id"] = @user.id
       redirect '/watches' ###sluggable###
     else
-      flash[:error] = @user.errors.full_messages.first
+      flash[:error] = @watch.errors.full_messages.first
       redirect '/watches'
     end
+    # @watch = Watch.new
+    # @watch.name = params['watch']['name']
+    # @watch.dimensions = params['watch']['dimensions']
+    # @watch.description = params['watch']['description']
+    # @watch.price = params['watch']['price']
+    # @watch.save
+    # redirect '/watches' 
+
 
   end
 
   # # GET: /watches/5
   get "/watches/:id" do
+    @watch = Watch.find_by_id(params[:id])
     erb :"/watches/show.html"
   end
 
