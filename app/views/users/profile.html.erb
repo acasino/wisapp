@@ -1,6 +1,6 @@
 <h1 class="no-margin">Welcome <%= current_user.username %></h1>
 
-<h2>Profile:
+<h2>My Watches:
 <div>
     <%= @user.profile %>
 </div>
@@ -10,19 +10,31 @@
     <% @user.watches.each do |watch| %>
       <!-- <li><%= watch.name %> </a></li> -->
       <li><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
+      <li> <%= watch.brand %> </a></li>
+      <li> <%= watch.price %> </a></li>
     <% end %>
   </ul>
 
 <br>
 
 
-<h2><a href="/watches/new.html"> Add a new watch: </a></h2>
+<div><h3><a href="/watches/new.html"> Add a new watch </a></h3></div>
+
+<div><h3><a href="/watches"> See ALL Watches </a></h3></div>
+
+<br>
 
 
-<h2>Collection total value: </h2>
+<div><h2>Collection total value: </h2>
+<%=@watchsum%>
+</div>
 
+<br>
+<br>
 
+<div>
 <form action="/logout" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input class="btn" type="submit" value="Log out">
   </form>
+</div>

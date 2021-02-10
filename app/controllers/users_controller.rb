@@ -22,6 +22,7 @@ class UsersController < ApplicationController
   get '/users/profile.html' do
     if logged_in?
       @user = current_user
+      @watchsum = @user.watches.sum(:price).to_d
       erb :"/users/profile.html"
     else
       redirect '/login'
