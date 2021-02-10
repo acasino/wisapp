@@ -31,4 +31,12 @@
         <input type="submit" value="Edit Watch">
     </form>
 
+    <div class="container">
+    <form action="/watches/<%=@watch.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="watch[id]" value="<%= @watch.id %>">
+        <input class="btn red-outline" type="submit" value="Delete Watch">        
+    </form>
+</div>
+
 </div>

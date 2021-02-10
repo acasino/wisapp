@@ -6,9 +6,10 @@
   </div>
 <% end %>
 </p>
-<br>
-<h2><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></h2>
 
+<% if @watch.owner_id == @user.id %>
+<h2><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></h2>
+<br>
 <div class="container">
     <form action="/watches/<%=@watch.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
@@ -16,3 +17,6 @@
         <input class="btn red-outline" type="submit" value="Delete Watch">        
     </form>
 </div>
+<% else %>%
+<h2><a href="/offers/new.html"> Send Offer</a></h2>
+<%end%>

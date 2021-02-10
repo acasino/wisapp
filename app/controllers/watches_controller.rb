@@ -38,12 +38,13 @@ class WatchesController < ApplicationController
 
   # # GET: /watches/5
   get "/watches/:id" do
+    @user = current_user
     @watch = Watch.find_by_id(params[:id])
     erb :"/watches/show.html"
   end
 
   # GET: /watches/5/edit
-  get "/watches/:id/edit" do
+  get "/watches/:id/edit.html" do
     @watch = Watch.find_by_id(params[:id])
     erb :"/watches/edit.html"
   end
