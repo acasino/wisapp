@@ -13,26 +13,29 @@ class WatchesController < ApplicationController
 
   # POST: /watches
   post "/watches" do
-    # @watch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})    
-    # # unless params[:watch][:name].empty?
-    # if watch.valid?
-    #   flash[:success] = "Successfully created new watch."
-    #   redirect '/users/profile.html' 
-    # else
-    #   flash[:error] = @watch.errors.full_messages.first
-    #   redirect '/watches'
-    # end
-    @user = current_user
-    @watch = Watch.new
-    @watch.name = params['watch']['name']
-    @watch.dimensions = params['watch']['dimensions']
-    @watch.description = params['watch']['description']
-    @watch.price = params['watch']['price']
-    @watch.brand = params['watch']['brand']
-    @watch.genre = params['watch']['genre']
-    @watch.save
-    @user.watches << @watch
-    erb :"/users/profile.html"
+    user = current_user
+    watch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})    
+    # unless params[:watch][:name].empty?
+    if watch.valid?
+      watch.update_attribute(:owner_id, "#{user.id}")
+      flash[:success] = "Successfully created new watch."
+      redirect '/users/profile.html' 
+    else
+      flash[:error] = @watch.errors.full_messages.first
+      redirect '/watches'
+    end
+    # @user = current_user
+    # @watch = Watch.new
+    # @watch.name = params['watch']['name']
+    # @watch.dimensions = params['watch']['dimensions']
+    # @watch.description = params['watch']['description']
+    # @watch.price = params['watch']['price']
+    # @watch.brand = params['watch']['brand']
+    # @watch.genre = params['watch']['genre']
+    # @watch.save
+    # @user.watches << @watch
+    # erb :"/users/profile.html"
+    # redirect "/users/profile.html"
 
   end
 
@@ -52,10 +55,11 @@ class WatchesController < ApplicationController
   # PATCH: /watches/5
   patch "/watches/:id" do
     @watch = Watch.find_by_id(params[:id])
-    @watch.description = params[:description]
-    @watch.price = params[:price]
-    @watch.save 
-    redirect "/watches/:id"
+    @watch.update(params[:watch])
+    # @watch.description = params[:description]
+    # @watch.price = params[:price]
+    # @watch.save 
+    redirect "/watches/#{@watch.id}"
   end
 
   # DELETE: /watches/5/delete
