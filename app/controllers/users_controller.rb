@@ -8,7 +8,7 @@ class UsersController < ApplicationController
   # POST: /users
   post "/signup" do
     @user = User.create(params["user"])
-    if user.valid?
+    if @user.valid?
       flash[:success] = "Successfully created new user."
       session["user_id"] = @user.id
       redirect '/login' ###sluggable###

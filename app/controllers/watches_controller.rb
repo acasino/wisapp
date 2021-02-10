@@ -58,7 +58,16 @@ class WatchesController < ApplicationController
   end
 
   # DELETE: /watches/5/delete
-  delete "/watches/:id/delete" do
-    redirect "/watches"
+  delete "/watches/:id" do
+    @user = current_user
+    if logged_in?
+      @watch = Watch.find_by_id(params[:id])
+      @watch.delete
+      flash[:message] = "#{@watch.name} Deleted"
+      redirect "/users/profile.html"
+    else
+      flash[:message] = "Unable To Delete #{@watch.name}"
+      redirect "/#{@watch.id}"
+    end
   end
 end
