@@ -1,4 +1,5 @@
 class Watch < ActiveRecord::Base
+    mount_uploader :avatar, AvatarUploader
     has_many :userwatches
     has_many :users, through: :userwatches
     # has_and_belongs_to_many :owners, :class_name => "User", :join_table => "userwatches", :association_foreign_key => "user_id"

@@ -2,7 +2,8 @@
 
 
 <div class="container">
-    <form method="post" action="/watches">
+    <form method="post" action="/watches" enctype="multipart/form-data">
+    <%# <form method="post" action="/watches"> %>
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" name="watch[name]" id="name" class="form-control" required>
@@ -26,6 +27,10 @@
         <div class="form-group">
             <label for="brand">Brand:</label>
             <input type="brand" name="watch[brand]" id="brand" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <label for="avatar">Avatar</label>
+            <input type="file" id="avatar" name="watch[avatar]" class="form-control" required>
         </div>        
 
         <input type="submit" value="Create Watch">
