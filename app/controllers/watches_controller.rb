@@ -30,8 +30,8 @@ class WatchesController < ApplicationController
     @watch.price = params['watch']['price']
     @watch.brand = params['watch']['brand']
     @watch.genre = params['watch']['genre']
-    @watch.owner_id = current_user.id
     @watch.save
+    @user.watches << @watch
     erb :"/users/profile.html"
 
   end

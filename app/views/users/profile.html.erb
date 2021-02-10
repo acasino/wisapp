@@ -8,7 +8,8 @@
 
 <ul>
     <% @user.watches.each do |watch| %>
-      <li><%= watch.name %> </a></li>
+      <!-- <li><%= watch.name %> </a></li> -->
+      <li><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
     <% end %>
   </ul>
 
