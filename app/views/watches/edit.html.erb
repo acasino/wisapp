@@ -1,7 +1,7 @@
 <h1>Edit your watch</h1>
 
 <div class="container">
-    <form method="post" action="/watches/<%=@watch.id%>">
+    <form method="post" action="/watches/<%=@watch.id%>" enctype="multipart/form-data">
         <input id="hidden" type="hidden" name="_method" value="patch" />
         <div class="form-group">
             <label for="name">Name:</label>
@@ -27,6 +27,10 @@
             <label for="brand">Brand:</label>
             <input type="brand" name="watch[brand]" id="brand" class="form-control" required>
         </div>        
+        <div class="form-group">
+            <label for="avatar">Add Picture:</label>
+            <input type="file" id="avatar" name="watch[avatar]" class="form-control" required>
+        </div>  
 
         <input type="submit" value="Edit Watch">
     </form>
