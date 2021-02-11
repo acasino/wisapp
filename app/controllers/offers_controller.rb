@@ -15,13 +15,15 @@ class OffersController < ApplicationController
   # POST: /offers
   post "/offers" do
     # user = current_user
-    offer = Offer.create(params["offer"]) #.reject{|_, v| v.blank?})  
+    offer = Offer.create(params["offer"]) #.reject{|_, v| v.blank?}  
     if offer.valid? 
       flash[:success] = "Successfully created new offer."
       redirect '/offers/index.html' 
     else
-      flash[:error] = wristwatch.errors.full_messages.first
-      redirect '/watches/show.html'
+      flash[:error] = offer.errors.full_messages.first
+      # redirect '/watches/show.html'
+      redirect '/offers' 
+
     end
   end
 
