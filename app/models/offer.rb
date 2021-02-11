@@ -8,9 +8,9 @@ class Offer < ActiveRecord::Base
     # validates :wanted, presence: true
     # validate :future_timestamp?
 
-    def future_timestamp?
-        if self.timestamp > DateTime.now
-            self.errors.add :timestamp, "Cannot be in the future."
-        end
-    end
+    # def future_timestamp?
+    #     if self.timestamp > DateTime.now
+    #         self.errors.add :timestamp, "Cannot be in the future."
+    #     end
+    # end
 end

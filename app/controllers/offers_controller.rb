@@ -7,15 +7,27 @@ class OffersController < ApplicationController
   end
 
   # GET: /offers/new
-  get "/offers/new" do
-
-    erb :"/offers/new.html"
+  get "/watches/:id/offers/new.html" do
+    @watch = Watch.find_by_id(params[:id])
+    erb :'/offers/new.html'
   end
 
   # POST: /offers
-  post "/offers" do
-    # user = current_user
-    offer = Offer.create(params["offer"]) #.reject{|_, v| v.blank?}  
+  post "/watches/:id/offers" do
+    # offer = Offer.create(params["offer"])#.reject{|_, v| v.blank?}  
+    @watch = Watch.find_by_id(params[:id])
+    offer = Offer.new
+    offer.sender_id = current_user.id
+    offer.receiver_id = @watch.userwatches.where(:watch_id == @watch.id)
+    offer.sender_offer_price = params['offer']['sender_offer_price']
+    offer.timestamp = DateTime.now
+    offer.transaction_id = offer.id
+    offer.status = 'Pending'
+    offer.wanted_id = offer.id
+    offer.accepted = false 
+    offer.save
+    # @user.watches << @watch
+    binding.pry
     if offer.valid? 
       flash[:success] = "Successfully created new offer."
       redirect '/offers/index.html' 
