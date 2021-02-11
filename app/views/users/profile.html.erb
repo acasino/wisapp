@@ -13,7 +13,7 @@
 </h2>
 
 <ul>
-    <% @user.watches.each do |watch| %>
+    <% @user.watches.all.each do |watch| %>
       <!-- <li><%= watch.name %> </a></li> -->
       <li><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
       <li> <%= watch.brand %> </a></li>

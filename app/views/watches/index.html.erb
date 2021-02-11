@@ -1,6 +1,6 @@
 <h1>This is the index page for all watches.</h1>
 <ul>
-    <% @watches.all.each do |watch| %>
+    <% @watches.each do |watch| %>
     <div>
       <li><a href="/watches/<%=watch.id%>"><%= watch.name %></a></li>
       <li>$<%= watch.price %> </a></li>

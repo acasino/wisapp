@@ -7,7 +7,7 @@
 <% end %>
 </p>
 
-<% if @watch.owner_id == @user.id %>
+<% if @watch.userwatches.where(:watch_id == @watch.id) == @user.id %>
 <h2><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></h2>
 <br>
 <div class="container">

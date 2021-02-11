@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_015904) do
-
-  create_table "brands", force: :cascade do |t|
-    t.string "name"
-    t.string "avatar"
-    t.text "profile"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "genres", force: :cascade do |t|
-    t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
+ActiveRecord::Schema.define(version: 2021_02_11_055450) do
 
   create_table "offers", force: :cascade do |t|
     t.integer "sender_id"

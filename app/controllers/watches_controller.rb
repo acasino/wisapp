@@ -3,6 +3,7 @@ class WatchesController < ApplicationController
   # GET: /watches
   get "/watches" do
     @watches = Watch.all
+
     erb :"/watches/index.html"
   end
 
@@ -13,17 +14,17 @@ class WatchesController < ApplicationController
 
   # POST: /watches
   post "/watches" do
-    user = current_user
+    # user = current_user
     wristwatch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})  
-    # unless params[:watch][:name].empty?
-    if wristwatch.valid?
-      # watch.update_attribute(:owner_id, "#{user.id}")
+    # wristwatch = Watch.new(params["watch"]) #.reject{|_, v| v.blank?})  
+    if wristwatch.valid? 
       Userwatch.create(user: current_user, watch: wristwatch)
+      # Userwatch.find_or_create_by(user: current_user, watch: wristwatch)
       flash[:success] = "Successfully created new watch."
       redirect '/users/profile.html' 
     else
       flash[:error] = wristwatch.errors.full_messages.first
-      redirect '/watches'
+      redirect '/watches/new.html'
     end
     # @user = current_user 
     # @watch = Watch.new
@@ -37,13 +38,14 @@ class WatchesController < ApplicationController
     # @user.watches << @watch
     # erb :"/users/profile.html"
     # redirect "/users/profile.html"
-
   end
 
   # # GET: /watches/5
   get "/watches/:id" do
     @user = current_user
     @watch = Watch.find_by_id(params[:id])
+    # @userwatches = @user.userwatches.where(:user_id == @user.id)
+    # @id = @watch.userwatches.where
     erb :"/watches/show.html"
   end
 
