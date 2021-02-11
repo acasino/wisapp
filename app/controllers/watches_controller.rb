@@ -14,17 +14,18 @@ class WatchesController < ApplicationController
   # POST: /watches
   post "/watches" do
     user = current_user
-    watch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})    
+    wristwatch = Watch.create(params["watch"]) #.reject{|_, v| v.blank?})  
     # unless params[:watch][:name].empty?
-    if watch.valid?
-      watch.update_attribute(:owner_id, "#{user.id}")
+    if wristwatch.valid?
+      # watch.update_attribute(:owner_id, "#{user.id}")
+      Userwatch.create(user: current_user, watch: wristwatch)
       flash[:success] = "Successfully created new watch."
       redirect '/users/profile.html' 
     else
-      flash[:error] = @watch.errors.full_messages.first
+      flash[:error] = wristwatch.errors.full_messages.first
       redirect '/watches'
     end
-    # @user = current_user
+    # @user = current_user 
     # @watch = Watch.new
     # @watch.name = params['watch']['name']
     # @watch.dimensions = params['watch']['dimensions']

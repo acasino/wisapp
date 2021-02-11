@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_09_075040) do
+ActiveRecord::Schema.define(version: 2021_02_11_015904) do
 
   create_table "brands", force: :cascade do |t|
     t.string "name"
@@ -68,12 +68,10 @@ ActiveRecord::Schema.define(version: 2021_02_09_075040) do
     t.string "avatar"
     t.string "brand"
     t.string "genre"
-    t.integer "owner_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["brand"], name: "index_watches_on_brand"
     t.index ["genre"], name: "index_watches_on_genre"
-    t.index ["owner_id"], name: "index_watches_on_owner_id"
   end
 
 end
