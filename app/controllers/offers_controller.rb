@@ -2,17 +2,19 @@ class OffersController < ApplicationController
 
   # GET: /offers
   get "/offers" do
+    @offers = Offer.all
     erb :"/offers/index.html"
   end
 
   # GET: /offers/new
   get "/offers/new" do
-    
+
     erb :"/offers/new.html"
   end
 
   # POST: /offers
   post "/offers" do
+
     redirect "/offers"
   end
 
