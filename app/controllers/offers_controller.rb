@@ -43,10 +43,9 @@ class OffersController < ApplicationController
   get "/offers/:id" do
     @offer = Offer.find_by_id(params[:id])
     @watch = Watch.find_by_id(@offer.watch_id)
+    @user = current_user
     erb :"/offers/show.html"
   end
-  # Userwatch.where("watch_id = ?", watch.id).delete_all
-
 
   # # GET: /offers/5/edit
   # get "/offers/:id/edit" do
@@ -59,8 +58,12 @@ class OffersController < ApplicationController
     offer.status = "Accepted"
     offer.accepted = true
     offer.save
-    watch = Watch.find_by_id(offer.watch_id))
-    watch.userwatches.where(:watch_id == watch.id).last.user_id.update(user_id: current_user.id)
+    watch = Watch.find_by_id(offer.watch_id)
+    # watch.userwatches.where(:watch_id == watch.id).last.user_id.update(user_id: current_user.id)
+    watch.userwatches.where(:watch_id == offer.watch_id).last.user_id = current_user.id
+
+    #method to delete all offers where offer.watch_id = watch.id
+
     redirect "/offers/:id"
   end
 

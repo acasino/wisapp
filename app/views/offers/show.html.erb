@@ -1,7 +1,10 @@
 <h1> New Offer For: <br></h1>
 <h2><%= @watch.name %></h2>
 <br>
-<%if current_user.id = @offer.sender_id %>%
+
+<%if current_user.id == @offer.sender_id %>
+    <h3>Offered price: $<%=@offer.sender_offer_price%></h3>
+
     <div class="container">
     <form action="/offers/<%=@offer.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
@@ -11,8 +14,9 @@
     </div>
 <br>
 
-<% elsif current_user.id = @offer.receiver_id %>%
-    accept offer: redirect to congratulations page, controller flips values, cancels all other offers with that watch_id
+<% elsif current_user.id == @offer.receiver_id %>
+    <h3>Offered price: $<%=@offer.sender_offer_price%></h3>
+    
     <div class="container">
     <form action="/offers/<%=@offer.id%>" method="post">
         <input type="hidden" name="_method" value="patch">
@@ -31,7 +35,7 @@
     </form>
     </div>
 
-<%else %>%
+<%else %>
     <h3>Offered price: <%=@offer.sender_offer_price%></h3>
 <%end%>
 
