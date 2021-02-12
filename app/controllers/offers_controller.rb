@@ -42,9 +42,10 @@ class OffersController < ApplicationController
   # # GET: /offers/5
   get "/offers/:id" do
     @offer = Offer.find_by_id(params[:id])
+    @watch = Watch.find_by_id(@offer.watch_id)
     erb :"/offers/show.html"
   end
-  Userwatch.where("watch_id = ?", watch.id).delete_all
+  # Userwatch.where("watch_id = ?", watch.id).delete_all
 
 
   # # GET: /offers/5/edit
@@ -58,7 +59,15 @@ class OffersController < ApplicationController
   # end
 
   # # DELETE: /offers/5/delete
-  # delete "/offers/:id/delete" do
-  #   redirect "/offers"
-  # end
+  delete "/offers/:id/delete" do
+    if logged_in?
+      offer = Offer.find_by_id(params[:id])
+      offer.delete
+      flash[:message] = "Offer Deleted"
+      redirect "/offers"
+    else
+      flash[:message] = "Unable To Delete Offer"
+      redirect "/offers/#{offer.id}"
+    end
+  end
 end
