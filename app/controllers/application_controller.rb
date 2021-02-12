@@ -43,13 +43,13 @@ class ApplicationController < Sinatra::Base
     erb :not_found
   end
 
-  # get ['/signin', '/access'] do
-  #   redirect '/login'
-  # end
+  get ['/signin', '/access'] do
+    redirect '/login'
+  end
 
-  # error Sinatra::NotFound do
-  #   erb :"error.html"
-  # end
+  error Sinatra::NotFound do
+    erb :"error.html"
+  end
 
    helpers do
 
@@ -66,18 +66,18 @@ class ApplicationController < Sinatra::Base
         !!session[:user_id]
       end
 
-  #   def redirect_if_not_logged_in
-  #     if !logged_in?
-  #       redirect "/login"
-  #     end
-  #   end
+    def redirect_if_not_logged_in
+      if !logged_in?
+        redirect "/login"
+      end
+    end
 
-  #   def not_the_owner?(obj)
-  #     if current_user != obj.user
-  #       flash[:error] = "You do not have permission to access this page."
-  #       redirect "/login" #update**
-  #     end
-  #   end
+    def not_the_owner?(obj)
+      if current_user != obj.user
+        flash[:error] = "You do not have permission to access this page."
+        redirect "/login" #update**
+      end
+    end
    end
 
 
