@@ -27,9 +27,9 @@ class OffersController < ApplicationController
     offer.status = 'Pending'
     offer.wanted_id = offer.id
     offer.save
-    binding.pry
       flash[:success] = "Successfully created new offer."
       redirect '/offers' 
+
     else
       flash[:error] = offer.errors.full_messages.first
       # redirect '/watches/show.html'
@@ -39,9 +39,9 @@ class OffersController < ApplicationController
   end
 
   # # GET: /offers/5
-  # get "/offers/:id" do
-  #   erb :"/offers/show.html"
-  # end
+  get "/offers/:id" do
+    erb :"/offers/show.html"
+  end
 
   # # GET: /offers/5/edit
   # get "/offers/:id/edit" do

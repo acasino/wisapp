@@ -1,0 +1,22 @@
+<h1>Offer for:<%= @offer.name %></h1>
+<p>
+<%# <% @watch.attributes.each do |attr_name, attr_value| %>
+  <%# <div class="watch">
+    <%= attr_name %>: <%= attr_value %>
+  <%# </div>
+<% end %>
+</p>
+
+<% if @watch.userwatches.where(:watch_id == @watch.id).last.user_id == @user.id %>
+<h2><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></h2>
+<br>
+<div class="container">
+    <form action="/watches/<%=@watch.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="watch[id]" value="<%= @watch.id %>">
+        <input class="btn red-outline" type="submit" value="Delete Watch">        
+    </form>
+</div>
+<% else %>
+<h2><a href="/watches/<%=@watch.id%>/offers/new.html"> Send Offer</a></h2>
+<%end%>
