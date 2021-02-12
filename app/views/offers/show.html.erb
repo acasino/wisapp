@@ -1,2 +1,39 @@
-<h1> New Offer For: <br><%= @watch.name %></h1>
+<h1> New Offer For: <br></h1>
+<h2><%= @watch.name %></h2>
+<br>
+<%if current_user.id = @offer.sender_id %>%
+    <div class="container">
+    <form action="/offers/<%=@offer.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="offer[id]" value="<%= @offer.id %>">
+        <input class="btn red-outline" type="submit" value="Delete Offer">        
+    </form>
+    </div>
+
+<% elsif current_user.id = @offer.receiver_id %>%
+    accept offer: redirect to congratulations page, controller flips values, cancels all other offers with that watch_id
+    <div class="container">
+    <form action="/offers/<%=@offer.id%>" method="post">
+        <input type="hidden" name="_method" value="patch">
+        <input type="hidden" name="offer[id]" value="<%= @offer.id %>">
+        <input class="btn red-outline" type="submit" value="Delete Offer">        
+    </form>
+    </div>
+
+    <br>
+
+    <div class="container">
+    <form action="/offers/<%=@offer.id%>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="hidden" name="offer[id]" value="<%= @offer.id %>">
+        <input class="btn red-outline" type="submit" value="Decline Offer">        
+    </form>
+    </div>
+
+<%else %>%
+    <p>Offered price: <%=@offer.sender_offer_price%></p>
+
+<%end%>
+
+
 
