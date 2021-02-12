@@ -9,6 +9,7 @@
         <input class="btn red-outline" type="submit" value="Delete Offer">        
     </form>
     </div>
+<br>
 
 <% elsif current_user.id = @offer.receiver_id %>%
     accept offer: redirect to congratulations page, controller flips values, cancels all other offers with that watch_id
@@ -32,7 +33,6 @@
 
 <%else %>%
     <h3>Offered price: <%=@offer.sender_offer_price%></h3>
-
 <%end%>
 
 
