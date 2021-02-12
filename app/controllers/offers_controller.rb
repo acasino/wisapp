@@ -26,6 +26,7 @@ class OffersController < ApplicationController
     offer.transaction_id = offer.id
     offer.status = 'Pending'
     offer.wanted_id = offer.id
+    offer.watch_id = watch_id
     offer.save
       flash[:success] = "Successfully created new offer."
       redirect '/offers' 
@@ -40,8 +41,11 @@ class OffersController < ApplicationController
 
   # # GET: /offers/5
   get "/offers/:id" do
+    @offer = Offer.find_by_id(params[:id])
     erb :"/offers/show.html"
   end
+  Userwatch.where("watch_id = ?", watch.id).delete_all
+
 
   # # GET: /offers/5/edit
   # get "/offers/:id/edit" do
