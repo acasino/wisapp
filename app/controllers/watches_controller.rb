@@ -37,8 +37,8 @@ class WatchesController < ApplicationController
   end
   # PATCH: /watches/5
   patch "/watches/:id" do
-    @watch = Watch.find_by_id(params[:id])
-    @watch.update(params[:watch])
+    watch = Watch.find_by_id(params[:id])
+    watch.update(params[:watch])
     # @watch.description = params[:description]
     # @watch.price = params[:price]
     # @watch.save 
