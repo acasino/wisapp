@@ -16,7 +16,7 @@
     <form action="/offers/<%=@offer.id%>" method="post">
         <input type="hidden" name="_method" value="patch">
         <input type="hidden" name="offer[id]" value="<%= @offer.id %>">
-        <input class="btn red-outline" type="submit" value="Delete Offer">        
+        <input class="btn red-outline" type="submit" value="Accept Offer">        
     </form>
     </div>
 
@@ -31,7 +31,7 @@
     </div>
 
 <%else %>%
-    <p>Offered price: <%=@offer.sender_offer_price%></p>
+    <h3>Offered price: <%=@offer.sender_offer_price%></h3>
 
 <%end%>
 

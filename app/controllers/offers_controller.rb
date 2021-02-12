@@ -53,10 +53,17 @@ class OffersController < ApplicationController
   #   erb :"/offers/edit.html"
   # end
 
-  # # PATCH: /offers/5
-  # patch "/offers/:id" do
-  #   redirect "/offers/:id"
-  # end
+  # PATCH: /offers/5
+  patch "/offers/:id" do
+    offer = Offer.find_by_id(params[:id])
+    offer.status = "Accepted"
+    offer.accepted = true
+    offer.save
+    watch = Watch.find_by_id(offer.watch_id))
+    watch.userwatches.where(:watch_id == watch.id).last.user_id.update(user_id: current_user.id)
+    redirect "/offers/:id"
+  end
+
 
   # # DELETE: /offers/5/delete
   delete "/offers/:id/delete" do
