@@ -14,18 +14,20 @@ class OffersController < ApplicationController
 
   # POST: /offers
   post "/watches/:id/offers" do
+    offer = Offer.create(params["offer"])
     watch_id = params[:id]
     watch = Watch.find_by_id(watch_id)
-    offer = Offer.create(params["offer"])
+    # offer = Offer.create(params["offer"])
 
     if offer.valid? 
     offer.sender_id = current_user.id
     offer.receiver_id = watch.users.first.id
     offer.timestamp = DateTime.now
-    # @offer.transaction_id = offer.id
+    offer.transaction_id = offer.id
     offer.status = 'Pending'
     offer.wanted_id = offer.id
     offer.save
+    binding.pry
       flash[:success] = "Successfully created new offer."
       redirect '/offers' 
     else
