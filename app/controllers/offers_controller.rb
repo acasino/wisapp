@@ -66,14 +66,14 @@ class OffersController < ApplicationController
     userwatch = Userwatch.where("watch_id =?", offer.watch_id)
     userwatch.update(user_id: offer.sender_id)
     #method to delete all offers where offer.watch_id = watch.id
-
+    Offer.where("watch_id = ?", watch.id).delete_all
     redirect "/users/profile.html"
 
   end
 
 
   # # DELETE: /offers/5/delete
-  delete "/offers/:id/delete" do
+  delete "/offers/:id" do
     if logged_in?
       offer = Offer.find_by_id(params[:id])
       offer.delete

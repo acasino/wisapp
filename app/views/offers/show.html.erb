@@ -14,9 +14,9 @@
     </div>
 <br>
 
-<% elsif current_user.id == @offer.receiver_id %>
+<% elsif current_user.id == @offer.receiver_id && @offer.status != 'Accepted'%>
     <h3>Offered price: $<%=@offer.sender_offer_price%></h3>
-    
+
     <div class="container">
     <form action="/offers/<%=@offer.id%>" method="post">
         <input type="hidden" name="_method" value="patch">
@@ -36,7 +36,8 @@
     </div>
 
 <%else %>
-    <h3>Offered price: <%=@offer.sender_offer_price%></h3>
+    <h3>Offered price: <%=@offer.sender_offer_price%></h3><br>
+    <h3>Status: <%=@offer.status%>
 <%end%>
 
 
