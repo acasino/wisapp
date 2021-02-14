@@ -49,10 +49,7 @@ class OffersController < ApplicationController
     erb :"/offers/show.html"
   end
 
-  # # GET: /offers/5/edit
-  # get "/offers/:id/edit" do
-  #   erb :"/offers/edit.html"
-  # end
+
 
   # PATCH: /offers/5
   patch "/offers/:id" do
@@ -65,7 +62,6 @@ class OffersController < ApplicationController
     # wristwatch.save
     userwatch = Userwatch.where("watch_id =?", offer.watch_id)
     userwatch.update(user_id: offer.sender_id)
-    #method to delete all offers where offer.watch_id = watch.id
     Offer.where("watch_id = ?", watch.id).delete_all
     redirect "/users/profile.html"
 
