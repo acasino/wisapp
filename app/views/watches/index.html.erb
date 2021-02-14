@@ -1,9 +1,10 @@
-<h1>This is the index page for all watches.</h1>
+<h1>Available Watches for Purchase</h1>
 <ul>
     <% @watches.each do |watch| %>
     <div>
-      <li><a href="/watches/<%=watch.id%>"><%= watch.name %></a></li>
-      <li>$<%= watch.price %> </a></li>
+      <li><b><a href="/watches/<%=watch.id%>"><%= watch.name %></a></b></li>
+      <li><b>Listed Price: </b>$<%= watch.price %> </a></li>
+      <br>
     </div>
     <% end %>
 </ul>
