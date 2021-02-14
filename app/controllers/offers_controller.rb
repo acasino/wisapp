@@ -3,6 +3,8 @@ class OffersController < ApplicationController
   # GET: /offers
   get "/offers" do
     @offers = Offer.all
+    # @watch = Watch.find_by_id(offer.watch_id)
+
     erb :"/offers/index.html"
   end
 
@@ -62,7 +64,6 @@ class OffersController < ApplicationController
     # wristwatch.userwatches.where(:watch_id == offer.watch_id).last.user_id = offer.sender_id
     # wristwatch.save
     userwatch = Userwatch.where("watch_id =?", offer.watch_id)
-    # userwatch.user_id = offer.sender_id
     userwatch.update(user_id: offer.sender_id)
     #method to delete all offers where offer.watch_id = watch.id
 
