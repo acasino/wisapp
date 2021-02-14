@@ -58,13 +58,16 @@ class OffersController < ApplicationController
     offer.status = "Accepted"
     offer.accepted = true
     offer.save
-    watch = Watch.find_by_id(offer.watch_id)
-    # watch.userwatches.where(:watch_id == watch.id).last.user_id.update(user_id: current_user.id)
-    watch.userwatches.where(:watch_id == offer.watch_id).last.user_id = current_user.id
-
+    # wristwatch = Watch.find_by_id(offer.watch_id)
+    # wristwatch.userwatches.where(:watch_id == offer.watch_id).last.user_id = offer.sender_id
+    # wristwatch.save
+    userwatch = Userwatch.where("watch_id =?", offer.watch_id)
+    # userwatch.user_id = offer.sender_id
+    userwatch.update(user_id: offer.sender_id)
     #method to delete all offers where offer.watch_id = watch.id
 
-    redirect "/offers/:id"
+    redirect "/users/profile.html"
+
   end
 
 
