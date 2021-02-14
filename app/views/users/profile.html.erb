@@ -6,33 +6,37 @@
 
 <h1 class="no-margin">Welcome <%= current_user.username %></h1>
 
-<h2>My Watches:
-<div>
-    <%= @user.profile %>
-</div>
+<h2>
+    My Watches:
 </h2>
 
 <ul>
     <% @user.watches.all.each do |watch| %>
-      <!-- <li><%= watch.name %> </a></li> -->
-      <li><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
-      <li> <%= watch.brand %> </a></li>
-      <li> <%= watch.price %> </a></li>
+      <li> <b>Watch: </b><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
+      <li> <b>Brand: </b><%= watch.brand %> </a></li>
+      <li> <b>Price: </b>$<%= watch.price %> </a></li>
+      <br>
     <% end %>
   </ul>
 
 <br>
 
 
-<div><h3><a href="/watches/new.html"> Add a new watch </a></h3></div>
-
-<div><h3><a href="/watches"> See ALL Watches </a></h3></div>
+<div>
+    <button type="button" class="btn btn-light">
+    <a class="add-button" href="/watches/new.html"> Add a new watch </a>
+    </button>
+</div>
 
 <br>
+<!-- <div>
+    <a href="/watches"> See ALL Watches </a>
+</div>
+<br> -->
 
 
 <div><h2>Collection total value: </h2>
-<%=@watchsum%>
+$<%=@watchsum%>0
 </div>
 
 <br>

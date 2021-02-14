@@ -13,11 +13,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get "/" do
-    redirect '/login'
+    if !logged_in?
+      redirect '/login'
+    else 
+      redirect_if_logged_in
+    end
   end
 
   get '/login' do
-    #redirect_if_logged_in
+    redirect_if_logged_in
     erb :index
   end
 
@@ -69,6 +73,12 @@ class ApplicationController < Sinatra::Base
     def redirect_if_not_logged_in
       if !logged_in?
         redirect "/login"
+      end
+    end
+
+    def redirect_if_logged_in
+      if logged_in?
+        redirect "/users/profile.html"
       end
     end
 

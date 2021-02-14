@@ -42,7 +42,7 @@ class WatchesController < ApplicationController
     # @watch.description = params[:description]
     # @watch.price = params[:price]
     # @watch.save 
-    redirect "/watches/#{@watch.id}"
+    redirect "/watches/#{watch.id}"
   end
   # DELETE: /watches/5/delete
   delete "/watches/:id" do

@@ -1,15 +1,24 @@
 <h1><%= @watch.name %></h1>
 <p>
-<% @watch.attributes.each do |attr_name, attr_value| %>
-  <div class="watch">
-    <%= attr_name %>: <%= attr_value %>
-  </div>
-<% end %>
+<b>Name: </b><%=@watch.name%><br>
+<b>Dimensions: </b><%=@watch.dimensions%><br>
+<b>Description: </b><%=@watch.description%><br>
+<b>Price: </b>$<%=@watch.price%><br>
+<b>Brand: </b><%=@watch.brand%><br>
+<b>Genre: </b><%=@watch.genre%><br>
+<b>Added: </b><%=@watch.created_at%><br>
+<img src="​<%=@watch.avatar%>" class="img-thumbnail" alt="<%=@watch.name%>"
 </p>
+<br>
 
 <% if @watch.userwatches.where(:watch_id == @watch.id).last.user_id == @user.id %>
-<h2><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></h2>
+<button type="button" class="btn btn-light">
+    <div><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></div>
+</button>
 <br>
+<br>
+<br>
+
 <div class="container">
     <form action="/watches/<%=@watch.id%>" method="post">
         <input type="hidden" name="_method" value="delete">
