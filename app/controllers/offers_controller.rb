@@ -3,8 +3,6 @@ class OffersController < ApplicationController
   # GET: /offers
   get "/offers" do
     @offers = Offer.all
-    # @watch = Watch.find_by_id(offer.watch_id)
-
     erb :"/offers/index.html"
   end
 
@@ -19,7 +17,6 @@ class OffersController < ApplicationController
     offer = Offer.create(params["offer"])
     watch_id = params[:id]
     watch = Watch.find_by_id(watch_id)
-    # offer = Offer.create(params["offer"])
 
     if offer.valid? 
     offer.sender_id = current_user.id
@@ -37,7 +34,6 @@ class OffersController < ApplicationController
       flash[:error] = offer.errors.full_messages.first
       # redirect '/watches/show.html'
       redirect '/offers' 
-
     end
   end
 
@@ -50,21 +46,17 @@ class OffersController < ApplicationController
   end
 
 
-
   # PATCH: /offers/5
   patch "/offers/:id" do
     offer = Offer.find_by_id(params[:id])
     offer.status = "Accepted"
     offer.accepted = true
     offer.save
-    # wristwatch = Watch.find_by_id(offer.watch_id)
-    # wristwatch.userwatches.where(:watch_id == offer.watch_id).last.user_id = offer.sender_id
-    # wristwatch.save
+    
     userwatch = Userwatch.where("watch_id =?", offer.watch_id)
     userwatch.update(user_id: offer.sender_id)
     Offer.where("watch_id = ?", watch.id).delete_all
     redirect "/users/profile.html"
-
   end
 
 

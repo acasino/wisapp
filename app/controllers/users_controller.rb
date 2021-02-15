@@ -11,7 +11,7 @@ class UsersController < ApplicationController
     if @user.valid?
       flash[:success] = "Successfully created new user."
       session["user_id"] = @user.id
-      redirect '/login' ###sluggable###
+      redirect '/login' 
     else
       flash[:error] = @user.errors.full_messages.first
       redirect '/signup'
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     # # GET: /users/5
   get "/users/:id" do
-    if logged_in? #valid_credentials?
+    if logged_in? 
       @user = User.find_by_id(params[:id])
       if @user
         erb :"/users/profile.html"
@@ -51,13 +51,12 @@ class UsersController < ApplicationController
     end
   end
 
-  # # PATCH: /users/5
+  # # PATCH: /users/5 #not used
   patch "/users/:id" do
     @user = User.find_by_id(params[:id])
     @user.profile = params[:profile]
     @user.save 
-    # redirect '/users/:id' #Goes to "NOT FOUND" from /:id for some reason
-    redirect "/users/profile.html" #cannot update profile
+    redirect "/users/profile.html" 
   end
 
 
