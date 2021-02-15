@@ -11,9 +11,23 @@
     width: 100%;
   }
 
+  .navbar-collapse {
+    background-image: url("public/images/cat_banner.jpg");
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
   /* --- Welcome Page Styles --- */
   body {
     background-color: rgb(87, 108, 139);
+    /* background: url('https://wallpapercave.com/wp/wp2168386.jpg') no-repeat center center fixed; */
+    /* background: url('https://wallpapercave.com/wp/wp2168436.jpg') no-repeat center center fixed; */
+    /* background: url('https://k8q7r7a2.stackpathcdn.com/wp-content/uploads/2016/04/A.-Lange-Söhne-Datograph-Up_Down-10-Calibre-L951.6.jpg') no-repeat center center fixed; */
+    background: url('https://w.wallhaven.cc/full/45/wallhaven-45qqj3.jpg') no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
     color: #333;
     font-family: Helvetica, sans-serif;
     line-height: 18px;
@@ -122,10 +136,6 @@
   h2 {
     font-size: 18px;
     line-height: 24px;
-  }
-
-  .navbar {
-    background-image: url("/public/images/cat_banner.jpg");
   }
 
 }

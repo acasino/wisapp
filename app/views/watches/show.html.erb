@@ -7,6 +7,8 @@
 <b>Brand: </b><%=@watch.brand%><br>
 <b>Genre: </b><%=@watch.genre%><br>
 <b>Added: </b><%=@watch.created_at%><br>
+<%# <%= image_tag(@watch.avatar) if @watch.avatar? %> 
+<img src="<%=@watch.avatar.url%>">
 </p>
 <br>
 
