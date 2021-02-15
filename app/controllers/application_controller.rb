@@ -46,12 +46,16 @@ class ApplicationController < Sinatra::Base
     erb :not_found
   end
 
+  get '/home' do
+    erb :home
+  end
+
   get ['/signin', '/access'] do
     redirect '/login'
   end
 
   error Sinatra::NotFound do
-    erb :"error.html"
+    erb :"not_found"
   end
 
    helpers do
