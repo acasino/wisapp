@@ -2,14 +2,22 @@ class OffersController < ApplicationController
 
   # GET: /offers
   get "/offers" do
-    @offers = Offer.all
-    erb :"/offers/index.html"
+    if !!logged_in?
+      @offers = Offer.all
+      erb :"/offers/index.html"
+    else
+      redirect '/login'
+    end
   end
 
   # GET: /offers/new
   get "/watches/:id/offers/new.html" do
-    @watch = Watch.find_by_id(params[:id])
-    erb :'/offers/new.html'
+    if !!logged_in?
+      @watch = Watch.find_by_id(params[:id])
+      erb :'/offers/new.html'
+    else
+      redirect '/login'
+    end
   end
 
   # POST: /offers
@@ -39,10 +47,14 @@ class OffersController < ApplicationController
 
   # # GET: /offers/5
   get "/offers/:id" do
-    @offer = Offer.find_by_id(params[:id])
-    @watch = Watch.find_by_id(@offer.watch_id)
-    @user = current_user
-    erb :"/offers/show.html"
+    if !!logged_in?
+      @offer = Offer.find_by_id(params[:id])
+      @watch = Watch.find_by_id(@offer.watch_id)
+      @user = current_user
+      erb :"/offers/show.html"
+    else
+      redirect '/login'
+    end
   end
 
 

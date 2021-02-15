@@ -6,8 +6,12 @@ class WatchesController < ApplicationController
 
   # GET: /watches
   get "/watches" do
-    @watches = Watch.all
-    erb :"/watches/index.html"
+    if !!logged_in?
+      @watches = Watch.all
+      erb :"/watches/index.html"
+    else
+      redirect '/login'
+    end
   end
 
 
@@ -34,9 +38,13 @@ class WatchesController < ApplicationController
 
   # # GET: /watches/5
   get "/watches/:id" do
-    @user = current_user
-    @watch = Watch.find_by_id(params[:id])
-    erb :"/watches/show.html"
+    if !!logged_in?
+      @user = current_user
+      @watch = Watch.find_by_id(params[:id])
+      erb :"/watches/show.html"
+    else
+      redirect '/login'
+    end
   end
 
 

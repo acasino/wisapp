@@ -31,13 +31,15 @@ class UsersController < ApplicationController
 
     # # GET: /users/5
   get "/users/:id" do
-    if logged_in? 
+    if !!logged_in? 
       @user = User.find_by_id(params[:id])
       if @user
         erb :"/users/profile.html"
       else
         redirect '/not_found'
       end
+    else
+      redirect '/login'
     end
   end
 
@@ -63,7 +65,7 @@ class UsersController < ApplicationController
   # #DELETE:
   delete '/logout' do
     session.destroy
-    redirect to '/login'
+    redirect '/login'
   end
 
 end
