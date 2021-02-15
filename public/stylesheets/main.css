@@ -13,12 +13,12 @@
 
   /* --- Welcome Page Styles --- */
   body {
-    background-color: lightblue;
+    background-color: rgb(87, 108, 139);
     color: #333;
-    font-family: Sans-Serif;
+    font-family: Helvetica, sans-serif;
     line-height: 18px;
   }
-  
+
 
   .wrapper {
     background: #fff;
@@ -52,6 +52,15 @@
     margin-bottom: 18px;
   }
 
+  input[type=submit] {
+    padding:5px 15px; 
+    background:#ccc; 
+    border:0 none;
+    cursor:pointer;
+    -webkit-border-radius: 5px;
+    border-radius: 5px; 
+}
+
   .main {
     overflow: hidden;
   }
@@ -76,6 +85,7 @@
   .branding {
     clear: both;
   }
+
 
   footer.branding {
     border-top: 2px solid #ccc;
@@ -113,4 +123,9 @@
     font-size: 18px;
     line-height: 24px;
   }
+
+  .navbar {
+    background-image: url("/public/images/cat_banner.jpg");
+  }
+
 }

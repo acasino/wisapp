@@ -8,7 +8,5 @@ use Rack::MethodOverride
 use WatchesController
 use UsersController
 use OffersController
-# use GenresController
-# use BrandsController
 run ApplicationController
 
