@@ -8,6 +8,7 @@ class WatchesController < ApplicationController
   get "/watches" do
     if !!logged_in?
       @watches = Watch.all
+      @offers = Offer.all
       erb :"/watches/index.html"
     else
       redirect '/login'
