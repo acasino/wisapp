@@ -12,7 +12,7 @@
     <% @watches.each do |watch| %>
     <div>
       <li><b><a href="/watches/<%=watch.id%>"><%= watch.name %></a></b></li>
-      <li><b>Listed Price: </b>$<%= watch.price %> </a></li>
+      <li><b>Listed Price: </b>$<%= '%.2f'%watch.price %> </a></li>
       <li><b>Total Offers: </b><%=@offers.all.where("watch_id = ?", watch.id).count%>
       <br>
       <br>

@@ -15,7 +15,7 @@
     <% @user.watches.all.each do |watch| %>
       <li> <b>Watch: </b><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
       <li> <b>Brand: </b><%= watch.brand %> </a></li>
-      <li> <b>Price: </b>$<%= watch.price %> </a></li>
+      <li> <b>Price: </b>$<%= '%.2f'%watch.price %> </a></li>
       <br>
     <% end %>
   </ul>
@@ -32,7 +32,7 @@
 
 
 <div class="container">
-    <h2>Collection Total Value: </h2> <b>$<%=@watchsum%></b>
+    <h2>Collection Total Value: </h2> <b>$<%='%.2f'%@watchsum%></b>
 </div>
 
 

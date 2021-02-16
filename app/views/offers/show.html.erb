@@ -3,7 +3,7 @@
 <br>
 
 <%if current_user.id == @offer.sender_id %>
-    <h3>Offered price: $<%=@offer.sender_offer_price%></h3>
+    <h3>Offered price: $<%='%.2f'%@offer.sender_offer_price%></h3>
 
     <div class="container">
     <form action="/offers/<%=@offer.id%>" method="post">
@@ -15,7 +15,7 @@
 <br>
 
 <% elsif current_user.id == @offer.receiver_id && @offer.status != 'Accepted'%>
-    <h3>Offered price: $<%=@offer.sender_offer_price%></h3>
+    <h3>Offered price: $<%='%.2f'%@offer.sender_offer_price%></h3>
 
     <div class="container">
     <form action="/offers/<%=@offer.id%>" method="post">
@@ -36,7 +36,7 @@
     </div>
 
 <%else %>
-    <h3>Offered price: <%=@offer.sender_offer_price%></h3><br>
+    <h3>Offered price: <%='%.2f'%@offer.sender_offer_price%></h3><br>
     <h3>Status: <%=@offer.status%>
 <%end%>
 

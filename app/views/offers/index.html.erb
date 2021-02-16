@@ -14,7 +14,7 @@
         <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
         Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
         <br>
-        Offered Price: <%= offer.sender_offer_price%>
+        Offered Price: <%= '%.2f'%offer.sender_offer_price%>
         <br>
         Status: <%=offer.status%>
         <br>
@@ -35,7 +35,7 @@
             <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
             Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
             <br>
-            Offered Price: <%= offer.sender_offer_price%>
+            Offered Price: <%= '%.2f'%offer.sender_offer_price%>
             <br>
             Status: <%=offer.status%>
             <br>
