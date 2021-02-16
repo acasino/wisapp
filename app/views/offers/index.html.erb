@@ -4,11 +4,11 @@
     </div>
 <% end %>
 
-
 <h1> My Offers Page </h1>
 <br>
 <div>
 <h2>My Sent Offers</h2>
+<div class="container">
 <%@offers.each do |offer|%>
     <%if offer.sender_id == current_user.id%>        
         <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
@@ -23,26 +23,28 @@
         <br>
     <%end%>
 <%end%>
-
+</div>
 </div>
 <br>
 <br>
 <div>
 <h2>My Received Offers</h2>
-<%@offers.each do |offer|%>
-    <%if offer.receiver_id == current_user.id%>
-        <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
-        Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
-        <br>
-        Offered Price: <%= offer.sender_offer_price%>
-        <br>
-        Status: <%=offer.status%>
-        <br>
-        Date Sent: <%=offer.timestamp%>
-        <br>
-        <br>
+<div class="container">
+    <%@offers.each do |offer|%>
+        <%if offer.receiver_id == current_user.id%>
+            <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
+            Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
+            <br>
+            Offered Price: <%= offer.sender_offer_price%>
+            <br>
+            Status: <%=offer.status%>
+            <br>
+            Date Sent: <%=offer.timestamp%>
+            <br>
+            <br>
+        <%end%>
     <%end%>
-<%end%>
+</div>
 </div>
 
 

@@ -10,6 +10,7 @@
     My Collection:
 </h2>
 
+<div class="container">
 <ul>
     <% @user.watches.all.each do |watch| %>
       <li> <b>Watch: </b><a href="/watches/<%= watch.id %>"><%= watch.name %> </a></li>
@@ -25,11 +26,12 @@
     <a class="add-button" href="/watches/new.html"> Add a new watch </a>
     </button>
 </div>
+</div>
 
 <br>
 
 
-<div>
+<div class="container">
     <h2>Collection Total Value: </h2> <b>$<%=@watchsum%></b>
 </div>
 
@@ -37,7 +39,7 @@
 <br>
 <br>
 
-<div>
+<div class="container">
 <form action="/logout" method="POST">
     <input type="hidden" name="_method" value="DELETE">
     <input class="btn" type="submit" value="Log out">
