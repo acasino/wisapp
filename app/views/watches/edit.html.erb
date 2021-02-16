@@ -13,35 +13,41 @@
             <label for="name">Name:</label>
             <input type="text" name="watch[name]" id="name" class="form-control" required>
         </div>
+        <br>
         <div class="form-group">
             <label for="dimensions">Dimensions:</label>
             <input type="dimensions" name="watch[dimensions]" id="dimensions" class="form-control" required><br>
         </div>
+        <br>
         <div class="form-group">
             <label for="description">Description:</label>
             <input type="description" name="watch[description]" id="description" class="form-control" required>
         </div>
+        <br>
         <div class="form-group">
             <label for="price">Price:</label>
             <input type="price" name="watch[price]" id="price" class="form-control" required>
         </div>
+        <br>
         <div class="form-group">
             <label for="genre">Genre:</label>
             <input type="genre" name="watch[genre]" id="genre" class="form-control" required>
         </div>
+        <br>
         <div class="form-group">
             <label for="brand">Brand:</label>
             <input type="brand" name="watch[brand]" id="brand" class="form-control" required>
-        </div>        
+        </div>    
+        <br>    
         <div class="form-group">
             <label for="avatar">Add Picture:</label>
             <input type="file" id="avatar" name="watch[avatar]" class="form-control" >
         </div>  
-
-        <input type="submit" value="Edit Watch">
+        <br>
+        <input type="submit" value="Submit Edit">
     </form>
-
-
+</div>
+<br>
 
     <div class="container">
     <form action="/watches/<%=@watch.id%>" method="post">
@@ -49,8 +55,10 @@
         <input type="hidden" name="watch[id]" value="<%= @watch.id %>">
         <input class="btn red-outline" type="submit" value="Delete Watch">        
     </form>
-</div>
+    </div>
 
-<div>
-<h2><a href="/watches/<%=@watch.id%>">Cancel Edit</a></h2>
+<br>
+<div class="container">
+<button type="button" class="btn btn-light">
+<a href="/watches/<%=@watch.id%>">Cancel Edit</a>
 </div>

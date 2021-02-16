@@ -17,6 +17,8 @@
     background-size: cover;
   }
 
+  
+
   /* --- Welcome Page Styles --- */
   body {
     background-color: rgb(87, 108, 139);
@@ -33,6 +35,13 @@
     line-height: 18px;
   }
 
+  img, svg {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 25%;
+    /* vertical-align: middle; */
+    }
 
   .wrapper {
     background: #fff;
