@@ -8,7 +8,7 @@ wisapp is an application that allows watch collectors to build and track their w
 What is a self described "WIS", or rather, a "watch idiot savant"? [Mirriam-Webster's Dictionary](http://www.m-w.com/cgi-bin/dictionary?book=Dictionary&va=idiot+savant) defines ‘Idiot Savant’ as:
 ```
 Etymology: French, literally, learned idiot
-Date: 1927<br>
+Date: 1927
 1 : a mentally defective person who exhibits exceptional skill or brilliance in some limited field<br>
 2 : a person who is highly knowledgeable about one subject but knows little about anything else
 ```
@@ -34,8 +34,11 @@ shotgun
 
 Open a web-browser with the URL [http://localhost:9393/](http://localhost:9393/) to view the wisapp login page. Create a new account and begin adding a watch to your collection. 
 
+![Image](https://i.ibb.co/Y2qhFG1/04295-C80-A067-4669-B4-B4-25-BBC53-F2-EA2.jpg)
+
+
 ## Contributing
-Pull requests are welcome. For significant changes, bug fixes or collaborations, please open an issue to discuss what changes you'd like to be made.
+Bug reports and pull requests are welcome on GitHub at [ https://github.com/acasino/wisapp](https://github.com/acasino/wisapp). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
 Alternatively see the GitHub documentation on [creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request).
 
