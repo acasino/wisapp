@@ -60,15 +60,20 @@ class OffersController < ApplicationController
 
   # PATCH: /offers/5
   patch "/offers/:id" do
-    offer = Offer.find_by_id(params[:id])
-    offer.status = "Accepted"
-    offer.accepted = true
-    offer.save
+    if !!logged_in?
+      offer = Offer.find_by_id(params[:id])
+      offer.status = "Accepted"
+      offer.accepted = true
+      offer.save
     
-    userwatch = Userwatch.where("watch_id =?", offer.watch_id)
-    userwatch.update(user_id: offer.sender_id)
-    Offer.where("watch_id = ?", watch.id).delete_all
-    redirect "/users/profile.html"
+      userwatch = Userwatch.where("watch_id =?", offer.watch_id)
+      userwatch.update(user_id: offer.sender_id)
+      Offer.where("watch_id = ?", watch.id).delete_all
+      redirect "/users/profile.html"
+    else
+      flash[:message] = "Unable To Edit Offer"
+      redirect '/login'
+    end
   end
 
 
@@ -77,7 +82,7 @@ class OffersController < ApplicationController
     if logged_in?
       offer = Offer.find_by_id(params[:id])
       offer.delete
-      flash[:message] = "Offer Deleted"
+      flash[:message] = "Offer Successfully Deleted"
       redirect "/offers"
     else
       flash[:message] = "Unable To Delete Offer"

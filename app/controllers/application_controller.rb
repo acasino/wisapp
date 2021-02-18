@@ -30,7 +30,6 @@ class ApplicationController < Sinatra::Base
       session["user_id"] = user.id
       flash[:success] = "Successfully logged in."
       redirect 'users/profile.html'
-      # erb :"/users/profile.html"
     else 
       flash[:error] = "Invalid credentials."
       redirect "/login"

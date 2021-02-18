@@ -1,9 +1,5 @@
 class WatchesController < ApplicationController
 
-  # def avatar_params
-  #   params.require(:avatar).permit(:title, :content, :image)
-  # end
-
   # GET: /watches
   get "/watches" do
     if !!logged_in?
@@ -58,9 +54,14 @@ class WatchesController < ApplicationController
 
   # PATCH: /watches/5
   patch "/watches/:id" do
-    watch = Watch.find_by_id(params[:id])
-    watch.update(params[:watch])
-    redirect "/watches/#{watch.id}"
+    if !!logged_in?
+      watch = Watch.find_by_id(params[:id])
+      watch.update(params[:watch])
+      redirect "/watches/#{watch.id}"
+    else
+      flash[:message] = "Unable To Update #{watch.name}"
+      redirect '/login'
+    end
   end
 
 

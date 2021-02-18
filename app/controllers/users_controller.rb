@@ -55,16 +55,22 @@ class UsersController < ApplicationController
 
   # # PATCH: /users/5 #not used
   patch "/users/:id" do
-    user = User.find_by_id(params[:id])
-    user.profile = params[:profile]
-    user.save 
-    redirect "/users/profile.html" 
+    if !!logged_in?
+      user = User.find_by_id(params[:id])
+      user.profile = params[:profile]
+      user.save 
+      flash[:success] = "Successfully Updated Profile."
+      redirect "/users/profile.html" 
+    else 
+      flash[:message] = "Unable To Edit Profile"
+      redirect '/login'
+    end
   end
 
 
   # #DELETE:
   delete '/logout' do
-    session.destroy
+    session.clear
     redirect '/login'
   end
 
