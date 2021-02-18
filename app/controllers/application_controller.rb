@@ -25,9 +25,9 @@ class ApplicationController < Sinatra::Base
   end
 
   post "/login" do
-    @user = User.find_by_email(params["user"]["email"])
-    if @user && @user.authenticate(params["user"]["password"])
-      session["user_id"] = @user.id
+    user = User.find_by_email(params["user"]["email"])
+    if user && user.authenticate(params["user"]["password"])
+      session["user_id"] = user.id
       flash[:success] = "Successfully logged in."
       redirect 'users/profile.html'
       # erb :"/users/profile.html"

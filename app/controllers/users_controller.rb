@@ -7,13 +7,13 @@ class UsersController < ApplicationController
 
   # POST: /users
   post "/signup" do
-    @user = User.create(params["user"])
-    if @user.valid?
+    user = User.create(params["user"])
+    if user.valid?
       flash[:success] = "Successfully created new user."
-      session["user_id"] = @user.id
+      session["user_id"] = user.id
       redirect '/login' 
     else
-      flash[:error] = @user.errors.full_messages.first
+      flash[:error] = user.errors.full_messages.first
       redirect '/signup'
     end
   end
@@ -55,9 +55,9 @@ class UsersController < ApplicationController
 
   # # PATCH: /users/5 #not used
   patch "/users/:id" do
-    @user = User.find_by_id(params[:id])
-    @user.profile = params[:profile]
-    @user.save 
+    user = User.find_by_id(params[:id])
+    user.profile = params[:profile]
+    user.save 
     redirect "/users/profile.html" 
   end
 
