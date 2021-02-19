@@ -44,7 +44,7 @@ Navigate to 'All Watches' within the Resources drop down from the navigation bar
 
 ![Image](https://user-images.githubusercontent.com/8316268/108465020-d1ea4300-7246-11eb-9de0-f1aff4e66f4f.jpeg)
 
-Input the amount of money you'd like to offer. Offers are final to ensure competitive pricing and full intent to purchase.
+Input the amount of money you'd like to offer upon clicking 'Send Offer'. Offers are final to ensure competitive pricing and full intent to purchase.
 
 ![Image](https://user-images.githubusercontent.com/8316268/108465027-d44c9d00-7246-11eb-9894-0dfc863eb495.jpeg)
 
