@@ -40,6 +40,15 @@ Create a new account and begin adding a watch to your collection upon logging in
 
 ![Image](https://user-images.githubusercontent.com/8316268/108464210-550a9980-7245-11eb-94d0-5c1f808b0a37.jpeg)
 
+Navigate to 'All Watches' within the Resources drop down from the navigation bar to access 'All Watches' available to make offers on.
+
+![Image](https://user-images.githubusercontent.com/8316268/108465020-d1ea4300-7246-11eb-9de0-f1aff4e66f4f.jpeg)
+
+Input the amount of money you'd like to offer. Offers are final to ensure competitive pricing and full intent to purchase.
+
+![Image](https://user-images.githubusercontent.com/8316268/108465027-d44c9d00-7246-11eb-9894-0dfc863eb495.jpeg)
+
+
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at [ https://github.com/acasino/wisapp](https://github.com/acasino/wisapp). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.
 
