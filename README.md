@@ -34,11 +34,11 @@ shotgun
 
 Open a web-browser with the URL [http://localhost:9393/](http://localhost:9393/) to view the wisapp login page. 
 
-![Image](https://user-images.githubusercontent.com/8316268/108027184-5e022d80-6fef-11eb-8fbc-1e52bcbdd903.JPG)
+![Image](https://user-images.githubusercontent.com/8316268/108464199-520fa900-7245-11eb-9f8f-82939387edcf.jpeg)
 
-Create a new account and begin adding a watch to your collection. 
+Create a new account and begin adding a watch to your collection upon logging in. 
 
-![Image](https://user-images.githubusercontent.com/8316268/108027609-18923000-6ff0-11eb-92ba-60165b34e930.jpeg)
+![Image](https://user-images.githubusercontent.com/8316268/108464210-550a9980-7245-11eb-94d0-5c1f808b0a37.jpeg)
 
 ## Contributing
 Bug reports and pull requests are welcome on GitHub at [ https://github.com/acasino/wisapp](https://github.com/acasino/wisapp). This project is intended to be a safe, welcoming space for collaboration, and contributors are expected to adhere to the Contributor Covenant code of conduct.

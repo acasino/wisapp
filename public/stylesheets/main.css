@@ -11,13 +11,6 @@
     width: 100%;
   }
 
-  .navbar-collapse {
-    background-image: url("public/images/cat_banner.jpg");
-    background-repeat: no-repeat;
-    background-size: cover;
-  }
-
-  
 
   /* --- Welcome Page Styles --- */
   body {
@@ -39,8 +32,6 @@
     display: block;
     margin-left: auto;
     margin-right: auto;
-    width: 25%;
-    /* vertical-align: middle; */
     }
 
   .wrapper {
