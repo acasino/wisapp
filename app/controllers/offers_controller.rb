@@ -2,7 +2,7 @@ class OffersController < ApplicationController
 
   # GET: /offers
   get "/offers" do
-    if !!logged_in?
+    if logged_in?
       @offers = Offer.all
       erb :"/offers/index.html"
     else
@@ -11,8 +11,8 @@ class OffersController < ApplicationController
   end
 
   # GET: /offers/new
-  get "/watches/:id/offers/new.html" do
-    if !!logged_in?
+  get "/watches/:id/offers/new" do
+    if logged_in?
       @watch = Watch.find_by_id(params[:id])
       erb :'/offers/new.html'
     else
@@ -47,7 +47,7 @@ class OffersController < ApplicationController
 
   # # GET: /offers/5
   get "/offers/:id" do
-    if !!logged_in?
+    if logged_in?
       @offer = Offer.find_by_id(params[:id])
       @watch = Watch.find_by_id(@offer.watch_id)
       @user = current_user
@@ -60,16 +60,19 @@ class OffersController < ApplicationController
 
   # PATCH: /offers/5
   patch "/offers/:id" do
-    if !!logged_in?
+    if logged_in?
       offer = Offer.find_by_id(params[:id])
       offer.status = "Accepted"
       offer.accepted = true
-      offer.save
-    
-      userwatch = Userwatch.where("watch_id =?", offer.watch_id)
-      userwatch.update(user_id: offer.sender_id)
-      Offer.where("watch_id = ?", watch.id).delete_all
-      redirect "/users/profile.html"
+      if offer.save  ##add flow control (when save update create delete)
+        userwatch = Userwatch.where("watch_id =?", offer.watch_id)
+        userwatch.update(user_id: offer.sender_id)
+        Offer.where("watch_id = ?", watch.id).delete_all
+        flash[:message] = "Edit Successful"
+        redirect "/users/profile.html"
+      else
+        redirect "/" ##
+      end
     else
       flash[:message] = "Unable To Edit Offer"
       redirect '/login'
