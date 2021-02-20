@@ -33,7 +33,8 @@ class UsersController < ApplicationController
   get "/users/:id" do
     if !!logged_in? 
       @user = User.find_by_id(params[:id])
-      if @user
+      @watchsum = @user.watches.sum(:price).to_d
+      if @user && @user == current_user
         erb :"/users/profile.html"
       else
         redirect '/not_found'

@@ -13,7 +13,7 @@ class WatchesController < ApplicationController
 
 
   # GET: /watches/new
-  get "/watches/new.html" do
+  get "/watches/new.html" do ##redirect if not logged in
     erb :"/watches/new.html"
   end
 
