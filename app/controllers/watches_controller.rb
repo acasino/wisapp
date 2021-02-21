@@ -2,7 +2,7 @@ class WatchesController < ApplicationController
 
   # GET: /watches
   get "/watches" do
-    if !!logged_in?
+    if logged_in?
       @watches = Watch.all
       @offers = Offer.all
       erb :"/watches/index.html"
@@ -35,7 +35,7 @@ class WatchesController < ApplicationController
 
   # # GET: /watches/5
   get "/watches/:id" do
-    if !!logged_in?
+    if logged_in?
       @user = current_user
       @watch = Watch.find_by_id(params[:id])
       erb :"/watches/show.html"
@@ -46,7 +46,7 @@ class WatchesController < ApplicationController
 
 
   # GET: /watches/5/edit
-  get "/watches/:id/edit.html" do
+  get "/watches/:id/edit.html" do  ##check if logged in, find watch, check if watch.user == current_user
     @watch = Watch.find_by_id(params[:id])
     erb :"/watches/edit.html"
   end
@@ -54,7 +54,7 @@ class WatchesController < ApplicationController
 
   # PATCH: /watches/5
   patch "/watches/:id" do
-    if !!logged_in?
+    if logged_in?
       watch = Watch.find_by_id(params[:id])
       watch.update(params[:watch])
       redirect "/watches/#{watch.id}"

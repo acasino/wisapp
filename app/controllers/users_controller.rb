@@ -31,7 +31,7 @@ class UsersController < ApplicationController
 
     # # GET: /users/5
   get "/users/:id" do
-    if !!logged_in? 
+    if logged_in? 
       @user = User.find_by_id(params[:id])
       @watchsum = @user.watches.sum(:price).to_d
       if @user && @user == current_user
@@ -56,7 +56,7 @@ class UsersController < ApplicationController
 
   # # PATCH: /users/5 #not used
   patch "/users/:id" do
-    if !!logged_in?
+    if logged_in?
       user = User.find_by_id(params[:id])
       user.profile = params[:profile]
       user.save 
