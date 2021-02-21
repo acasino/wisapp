@@ -53,7 +53,8 @@ class WatchesController < ApplicationController
   get "/watches/:id/edit.html" do  ##check if logged in, find watch, check if watch.user == current_user
     if logged_in?
       @watch = Watch.find_by_id(params[:id])
-      if @watch.user == current_user
+      @userwatch = Userwatch.find_by_id(params[:id])
+      if @userwatch.user_id = current_user.id
         erb :"/watches/edit.html"
       else
         redirect '/not_found'
