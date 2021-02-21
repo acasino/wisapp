@@ -14,7 +14,11 @@ class WatchesController < ApplicationController
 
   # GET: /watches/new
   get "/watches/new.html" do ##redirect if not logged in
-    erb :"/watches/new.html"
+    if logged_in?
+      erb :"/watches/new.html"
+    else
+      redirect '/login'
+    end
   end
 
 
@@ -47,8 +51,16 @@ class WatchesController < ApplicationController
 
   # GET: /watches/5/edit
   get "/watches/:id/edit.html" do  ##check if logged in, find watch, check if watch.user == current_user
-    @watch = Watch.find_by_id(params[:id])
-    erb :"/watches/edit.html"
+    if logged_in?
+      @watch = Watch.find_by_id(params[:id])
+      if @watch.user == current_user
+        erb :"/watches/edit.html"
+      else
+        redirect '/not_found'
+      end
+    else
+      redirect '/login'
+    end
   end
 
 
