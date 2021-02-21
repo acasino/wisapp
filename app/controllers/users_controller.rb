@@ -18,11 +18,11 @@ class UsersController < ApplicationController
     end
   end
 
-  # # GET: /users
+  # # GET: /users  #remove?
   get '/users/profile.html' do
     if logged_in?
       @user = current_user
-      @watchsum = @user.watches.sum(:price).to_d
+      @watchsum = current_user.watches.sum(:price).to_d
       erb :"/users/profile.html"
     else
       redirect '/login'
@@ -30,19 +30,19 @@ class UsersController < ApplicationController
   end
 
     # # GET: /users/5
-  get "/users/:id" do
-    if logged_in? 
-      @user = User.find_by_id(params[:id])
-      @watchsum = @user.watches.sum(:price).to_d
-      if @user && @user == current_user
-        erb :"/users/profile.html"
-      else
-        redirect '/not_found'
-      end
-    else
-      redirect '/login'
-    end
-  end
+  # get "/users/:id" do
+  #   if logged_in? 
+  #     @user = User.find_by_id(params[:id])
+  #     @watchsum = @user.watches.sum(:price).to_d
+  #     if @user && @user == current_user
+  #       erb :"/users/profile.html"
+  #     else
+  #       redirect '/not_found'
+  #     end
+  #   else
+  #     redirect '/login'
+  #   end
+  # end
 
   # # GET: /users/5/edit
   get "/users/:id/edit" do

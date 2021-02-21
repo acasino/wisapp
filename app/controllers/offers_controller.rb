@@ -64,14 +64,14 @@ class OffersController < ApplicationController
       offer = Offer.find_by_id(params[:id])
       offer.status = "Accepted"
       offer.accepted = true
-      if offer.save  ##add flow control (when save update create delete)
+      if offer.save  
         userwatch = Userwatch.where("watch_id =?", offer.watch_id)
         userwatch.update(user_id: offer.sender_id)
         Offer.where("watch_id = ?", watch.id).delete_all
         flash[:message] = "Edit Successful"
         redirect "/users/profile.html"
       else
-        redirect "/" ##
+        redirect "/not_found" 
       end
     else
       flash[:message] = "Unable To Edit Offer"
