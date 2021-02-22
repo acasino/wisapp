@@ -40,7 +40,6 @@ class OffersController < ApplicationController
 
     else
       flash[:error] = offer.errors.full_messages.first
-      # redirect '/watches/show.html'
       redirect '/offers' 
     end
   end
