@@ -42,7 +42,11 @@ class WatchesController < ApplicationController
     if logged_in?
       @user = current_user
       @watch = Watch.find_by_id(params[:id])
-      erb :"/watches/show.html"
+      if @watch
+        erb :"/watches/show.html"
+      else
+        redirect '/not_found'
+      end
     else
       redirect '/login'
     end
@@ -54,7 +58,7 @@ class WatchesController < ApplicationController
     if logged_in?
       @watch = Watch.find_by_id(params[:id])
       @userwatch = Userwatch.find_by_id(params[:id])
-      if @userwatch.user_id == current_user.id
+      if @watch && @userwatch.user_id == current_user.id 
         erb :"/watches/edit.html"
       else
         redirect '/not_found'

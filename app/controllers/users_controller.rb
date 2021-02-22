@@ -48,7 +48,11 @@ class UsersController < ApplicationController
   get "/users/:id/edit" do
     if logged_in? && !!current_user
       @user = User.find_by_id(params[:id])
-      erb :"/users/edit.html"
+      if @user
+        erb :"/users/edit.html"
+      else
+        redirect '/not_found'
+      end
     else
       redirect '/not_found'
     end
