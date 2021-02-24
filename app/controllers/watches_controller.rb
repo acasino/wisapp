@@ -54,19 +54,28 @@ class WatchesController < ApplicationController
 
 
   # GET: /watches/5/edit
-  get "/watches/:id/edit.html" do  
-    if logged_in?
-      @watch = Watch.find_by_id(params[:id])
-      @userwatch = Userwatch.find_by_id(params[:id])
+  get "/watches/:id/edit.html" do   
+
+    # if logged_in?
+    #   @watch = Watch.find_by_id(params[:id])
+    #   @userwatch = Userwatch.find_by_id(params[:id])
+    #   if @watch && @userwatch.user_id == current_user.id 
+    #     erb :"/watches/edit.html"
+    #   else
+    #     redirect '/not_found'
+    #   end
+    # else 
+    #   redirect '/login'
+    # end
+    redirect_if_not_logged_in
+    @watch = Watch.find_by_id(params[:id])
+    @userwatch = Userwatch.find_by_id(params[:id])
       if @watch && @userwatch.user_id == current_user.id 
-        erb :"/watches/edit.html"
+      erb :"/watches/edit.html"
       else
         redirect '/not_found'
       end
-    else
-      redirect '/login'
     end
-  end
 
 
   # PATCH: /watches/5
