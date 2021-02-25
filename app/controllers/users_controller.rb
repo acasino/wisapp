@@ -46,10 +46,9 @@ class UsersController < ApplicationController
 
   # # PATCH: /users/5 #not used
   patch "/users/:id" do
-    @user = User.find_by_id(params[:id])
-    if logged_in? && current_user.id == @user.id
-      @user.profile= params[:user][:profile]
-      @user.save 
+    user = User.find_by_id(params[:id])
+    if logged_in? && current_user.id == user.id
+      user.update_attribute(:profile, params[:user][:profile])
       flash[:success] = "Successfully Updated Profile."
       redirect "/users/profile.html" 
     else 
