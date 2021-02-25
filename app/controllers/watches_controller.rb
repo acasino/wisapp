@@ -80,23 +80,33 @@ class WatchesController < ApplicationController
 
   # PATCH: /watches/5
   patch "/watches/:id" do
-    if logged_in?
-      watch = Watch.find_by_id(params[:id])
+  #   if logged_in?
+  #     watch = Watch.find_by_id(params[:id])
+  #     binding.pry
+  #     watch.update(params[:watch])
+  #     redirect "/watches/#{watch.id}"
+  #   else
+  #     flash[:message] = "Unable To Update #{watch.name}"
+  #     redirect '/login'
+  #   end
+  # end
+  redirect_if_not_logged_in
+  watch = Watch.find_by_id(params[:id])
+    if watch && current_user.id == watch.users.first.id 
       watch.update(params[:watch])
       redirect "/watches/#{watch.id}"
     else
       flash[:message] = "Unable To Update #{watch.name}"
-      redirect '/login'
+      redirect '/not_found'
     end
   end
 
 
   # DELETE: /watches/5/delete
   delete "/watches/:id" do
-    if logged_in?
-      watch = Watch.find_by_id(params[:id])
+    watch = Watch.find_by_id(params[:id])
+    if logged_in? && current_user.id == watch.users.first.id 
       watch.delete
-      Userwatch.where("watch_id = ?", watch.id).delete_all
       flash[:message] = "#{watch.name} Deleted"
       redirect "/users/profile.html"
     else

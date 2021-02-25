@@ -8,3 +8,4 @@ class Watch < ActiveRecord::Base
     validates :brand, presence: true
     validates :genre, presence: true
 end
+
