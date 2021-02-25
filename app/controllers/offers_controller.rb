@@ -11,7 +11,7 @@ class OffersController < ApplicationController
   end
 
   # GET: /offers/new
-  get "/watches/:id/offers/new" do
+  get "/watches/:id/offers/new.html" do
     if logged_in?
       @watch = Watch.find_by_id(params[:id])
       if @watch
@@ -70,12 +70,11 @@ class OffersController < ApplicationController
     if logged_in?
       offer = Offer.find_by_id(params[:id])
       offer.status = "Accepted"
-      offer.accepted = true
+      offer.accepted = true ### get rid of accepted
       if offer.save  
-        userwatch = Userwatch.where("watch_id =?", offer.watch_id)
+        userwatch = Userwatch.where("watch_id =?", offer.watch_id) ##utilize macros
         userwatch.update(user_id: offer.sender_id)
-        Offer.where("watch_id = ?", watch.id).delete_all
-        flash[:message] = "Edit Successful"
+        flash[:message] = "Offer Accepted"
         redirect "/users/profile.html"
       else
         redirect "/not_found" 
