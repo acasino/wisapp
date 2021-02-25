@@ -24,28 +24,6 @@ class OffersController < ApplicationController
     end
   end
 
-  # # POST: /offers
-  # post "/watches/:id/offers" do
-  #   offer = Offer.create(params["offer"])
-  #   wristwatch = Watch.find_by_id(params[:id])
-
-  #   if offer.valid? 
-  #   offer.sender_id = current_user.id
-  #   offer.receiver_id = watch.users.first.id
-  #   offer.timestamp = DateTime.now
-  #   offer.transaction_id = offer.id
-  #   offer.status = 'Pending'
-  #   offer.wanted_id = offer.id
-  #   offer.watch_id = watch_id
-  #   offer.save ##duplicate
-  #     flash[:success] = "Successfully created new offer."
-  #     redirect '/offers' 
-
-  #   else
-  #     flash[:error] = offer.errors.full_messages.first
-  #     redirect '/offers' 
-  #   end
-  # end
 
     # POST: /offers
     post "/watches/:id/offers" do
@@ -80,10 +58,10 @@ class OffersController < ApplicationController
 
   # PATCH: /offers/5
   patch "/offers/:id" do
-    if logged_in?
+    if logged_in? 
       offer = Offer.find_by_id(params[:id])
       offer.status = "Accepted"
-      if offer.save  
+      if offer.save && current_user.id == offer.receiver_id
         userwatch = offer.watch.userwatches
         userwatch.update(user_id: offer.sender_id)
         flash[:message] = "Offer Accepted"
@@ -98,10 +76,11 @@ class OffersController < ApplicationController
   end
 
 
+
   # # DELETE: /offers/5/delete
   delete "/offers/:id" do
-    if logged_in?
-      offer = Offer.find_by_id(params[:id])
+    offer = Offer.find_by_id(params[:id])
+    if logged_in? && current_user.id == offer.receiver_id     
       offer.delete
       flash[:message] = "Offer Successfully Deleted"
       redirect "/offers"
