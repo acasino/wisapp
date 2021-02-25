@@ -6,9 +6,17 @@
 
 <h1 class="no-margin">Welcome, <%= @user.username %>!</h1>
 
+<div class="container">
 <% if @user.profile != nil %>
-<h2>Profile: <%=@user.profile%></h2>
+<h2>Profile: </h2>
+<h3><%=@user.profile%></h3>
 <%end%>
+<button type="button" class="btn btn-light">
+    <div><a href="/users/<%=@user.id%>/edit"> Edit Profile</a></div>
+</button>
+<br>
+<br>
+</div>
 
 <h2>
     My Collection:
