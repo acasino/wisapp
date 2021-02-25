@@ -83,13 +83,6 @@ class ApplicationController < Sinatra::Base
       end
     end
 
-    # def not_the_owner?(obj)
-    #   if current_user != obj.user
-    #     flash[:error] = "You do not have permission to access this page."
-    #     redirect "/login" 
-    #   end
-    # end
-
    end
 
 
