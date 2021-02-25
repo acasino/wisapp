@@ -28,7 +28,6 @@ class OffersController < ApplicationController
   # post "/watches/:id/offers" do
   #   offer = Offer.create(params["offer"])
   #   wristwatch = Watch.find_by_id(params[:id])
-  #   binding.pry
 
   #   if offer.valid? 
   #   offer.sender_id = current_user.id
@@ -84,9 +83,8 @@ class OffersController < ApplicationController
     if logged_in?
       offer = Offer.find_by_id(params[:id])
       offer.status = "Accepted"
-      offer.accepted = true ### get rid of accepted
       if offer.save  
-        userwatch = Userwatch.where("watch_id =?", offer.watch_id) ##utilize macros
+        userwatch = offer.watch.userwatches
         userwatch.update(user_id: offer.sender_id)
         flash[:message] = "Offer Accepted"
         redirect "/users/profile.html"
