@@ -24,29 +24,43 @@ class OffersController < ApplicationController
     end
   end
 
-  # POST: /offers
-  post "/watches/:id/offers" do
-    offer = Offer.create(params["offer"])
-    watch_id = params[:id]
-    watch = Watch.find_by_id(watch_id)
+  # # POST: /offers
+  # post "/watches/:id/offers" do
+  #   offer = Offer.create(params["offer"])
+  #   wristwatch = Watch.find_by_id(params[:id])
+  #   binding.pry
 
-    if offer.valid? 
-    offer.sender_id = current_user.id
-    offer.receiver_id = watch.users.first.id
-    offer.timestamp = DateTime.now
-    offer.transaction_id = offer.id
-    offer.status = 'Pending'
-    offer.wanted_id = offer.id
-    offer.watch_id = watch_id
-    offer.save
-      flash[:success] = "Successfully created new offer."
-      redirect '/offers' 
+  #   if offer.valid? 
+  #   offer.sender_id = current_user.id
+  #   offer.receiver_id = watch.users.first.id
+  #   offer.timestamp = DateTime.now
+  #   offer.transaction_id = offer.id
+  #   offer.status = 'Pending'
+  #   offer.wanted_id = offer.id
+  #   offer.watch_id = watch_id
+  #   offer.save ##duplicate
+  #     flash[:success] = "Successfully created new offer."
+  #     redirect '/offers' 
 
-    else
-      flash[:error] = offer.errors.full_messages.first
-      redirect '/offers' 
+  #   else
+  #     flash[:error] = offer.errors.full_messages.first
+  #     redirect '/offers' 
+  #   end
+  # end
+
+    # POST: /offers
+    post "/watches/:id/offers" do
+      wristwatch = Watch.find_by_id(params[:id])
+      offer = Offer.create(sender_id: current_user.id, receiver_id: wristwatch.users.first.id, sender_offer_price: params["offer"]["sender_offer_price"], watch_id: wristwatch.id)
+      if offer.valid? 
+        flash[:success] = "Successfully created new offer."
+        redirect '/offers' 
+      else
+        flash[:error] = offer.errors.full_messages.first
+        redirect '/offers' 
+      end
     end
-  end
+  
 
   # # GET: /offers/5
   get "/offers/:id" do

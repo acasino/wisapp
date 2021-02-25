@@ -10,15 +10,15 @@
 <h2>My Sent Offers</h2>
 <div class="container">
 <%@offers.each do |offer|%>
-    <%if offer.sender_id == current_user.id%>        
-        <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
-        Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
+    <%if offer.sender_id == current_user.id%> 
+        <%wristwatch = Watch.find(offer.watch_id)%>
+        Watch: <a href="/offers/<%= offer.id%>"> <%=wristwatch.name%>  </a>
         <br>
-        Offered Price: <%= '%.2f'%offer.sender_offer_price%>
+        Offered Price: $<%= '%.2f'%offer.sender_offer_price%>
         <br>
         Status: <%=offer.status%>
         <br>
-        Date Sent: <%=offer.timestamp%>
+        Date Sent: <%=offer.created_at%>
         <br>
         <br>
     <%end%>
@@ -32,14 +32,14 @@
 <div class="container">
     <%@offers.each do |offer|%>
         <%if offer.receiver_id == current_user.id%>
-            <%wristwatch = Watch.where("id = ?", offer.watch_id)%>
-            Watch: <a href="/offers/<%= offer.transaction_id%>"> <%=wristwatch.first.name%>  </a>
+            <%wristwatch = Watch.find(offer.watch_id)%>
+            Watch: <a href="/offers/<%= offer.id%>"> <%=wristwatch.name%>  </a>
             <br>
-            Offered Price: <%= '%.2f'%offer.sender_offer_price%>
+            Offered Price: $<%= '%.2f'%offer.sender_offer_price%>
             <br>
             Status: <%=offer.status%>
             <br>
-            Date Sent: <%=offer.timestamp%>
+            Date Sent: <%=offer.created_at%>
             <br>
             <br>
         <%end%>
