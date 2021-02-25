@@ -1,11 +1,13 @@
 <h1>Edit Profile</h1>
 
+<div class="container">
 <form method="post" action="/users/<%=@user.id%>">
   <input id="hidden" type="hidden" name="_method" value="patch" />
-
   <label for="name">Profile:</label>
-  <input type="text" id="profile" name="profile" value="<%=@user.profile%>" />
-  <br/>
+  <input type="text" id="profile" name="user[profile]" value="<%=@user.profile%>" />
+  <br>
+  <br>
   <input type="submit" value="Submit Changes" />
 
 </form>
+</div>

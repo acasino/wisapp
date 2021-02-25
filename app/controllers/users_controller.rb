@@ -18,7 +18,7 @@ class UsersController < ApplicationController
     end
   end
 
-  # # GET: /users  #remove?
+  # # GET: /users 
   get '/users/profile.html' do
     if logged_in?
       @user = current_user
@@ -29,26 +29,12 @@ class UsersController < ApplicationController
     end
   end
 
-    # # GET: /users/5
-  # get "/users/:id" do
-  #   if logged_in? 
-  #     @user = User.find_by_id(params[:id])
-  #     @watchsum = @user.watches.sum(:price).to_d
-  #     if @user && @user == current_user
-  #       erb :"/users/profile.html"
-  #     else
-  #       redirect '/not_found'
-  #     end
-  #   else
-  #     redirect '/login'
-  #   end
-  # end
 
   # # GET: /users/5/edit
   get "/users/:id/edit" do
     if logged_in? && !!current_user
       @user = User.find_by_id(params[:id])
-      if @user
+      if @user && current_user.id == @user.id
         erb :"/users/edit.html"
       else
         redirect '/not_found'
@@ -60,10 +46,10 @@ class UsersController < ApplicationController
 
   # # PATCH: /users/5 #not used
   patch "/users/:id" do
-    if logged_in?
-      user = User.find_by_id(params[:id])
-      user.profile = params[:profile]
-      user.save 
+    @user = User.find_by_id(params[:id])
+    if logged_in? && current_user.id == @user.id
+      @user.profile= params[:user][:profile]
+      @user.save 
       flash[:success] = "Successfully Updated Profile."
       redirect "/users/profile.html" 
     else 

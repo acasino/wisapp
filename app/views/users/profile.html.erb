@@ -6,6 +6,10 @@
 
 <h1 class="no-margin">Welcome, <%= @user.username %>!</h1>
 
+<% if @user.profile != nil %>
+<h2>Profile: <%=@user.profile%></h2>
+<%end%>
+
 <h2>
     My Collection:
 </h2>
