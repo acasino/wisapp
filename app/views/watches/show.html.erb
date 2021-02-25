@@ -13,7 +13,7 @@
 <img src="<%=@watch.avatar.url%>">
 <br>
 
-<% if @watch.userwatches.where(:watch_id == @watch.id).last.user_id == @user.id %>  
+<% if @watch.users.first.id == @user.id %>  
 <button type="button" class="btn btn-light">
     <div><a href="/watches/<%=@watch.id%>/edit.html"> Edit Watch</a></div>
 </button>
