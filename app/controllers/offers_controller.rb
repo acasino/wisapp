@@ -58,17 +58,15 @@ class OffersController < ApplicationController
 
   # PATCH: /offers/5
   patch "/offers/:id" do
-    if logged_in? 
-      offer = Offer.find_by_id(params[:id])
-      offer.status = "Accepted"
-      if offer.save && current_user.id == offer.receiver_id
-        userwatch = offer.watch.userwatches
-        userwatch.update(user_id: offer.sender_id)
-        flash[:message] = "Offer Accepted"
-        redirect "/users/profile.html"
-      else
-        redirect "/not_found" 
-      end
+    redirect_if_not_logged_in
+    offer = Offer.find_by_id(params[:id])
+    userwatch = offer.watch.userwatches
+
+    if offer && current_user.id == offer.receiver_id
+      offer.update(status: "Accepted")
+      userwatch.update(user_id: offer.sender_id)
+      flash[:message] = "Offer Accepted"
+      redirect "/users/profile.html"
     else
       flash[:message] = "Unable To Edit Offer"
       redirect '/login'
@@ -76,11 +74,11 @@ class OffersController < ApplicationController
   end
 
 
-
   # # DELETE: /offers/5/delete
   delete "/offers/:id" do
+    redirect_if_not_logged_in
     offer = Offer.find_by_id(params[:id])
-    if logged_in? && current_user.id == offer.receiver_id     
+    if current_user.id == offer.receiver_id || current_user.id == offer.sender_id      
       offer.delete
       flash[:message] = "Offer Successfully Deleted"
       redirect "/offers"
