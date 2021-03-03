@@ -44,7 +44,7 @@ class OffersController < ApplicationController
     if logged_in?
       @offer = Offer.find_by_id(params[:id])
       if @offer
-        @watch = Watch.find_by_id(@offer.watch_id)
+        @watch = @offer.watch
         @user = current_user
         erb :"/offers/show.html"
       else
